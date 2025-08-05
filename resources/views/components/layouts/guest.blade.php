@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark select-none">
+
+<head>
+    <x-layouts.meta-information />
+    <meta name="robots" content="index, follow">
+    <title>{{ $title . ' | ' . config('app.name') }}</title>
+    <meta name="description" content="{{ $description ?? config('app.description') }}">
+    @stack('styles')
+</head>
+
+<body class="bg-white dark:bg-gray-950 text-gray-950 dark:text-gray-100 relative transition-colors duration-500">
+    <x-layouts.color-mode class="absolute top-4 right-4" />
+    <div class="w-full min-h-screen px-4 py-16 flex flex-col justify-center items-center bg-cover bg-center" style="background-image: url({{ $background }});">
+        <x-logo class="w-48 mb-4" />
+        {{ $slot }}
+    </div>
+    <x-alert-message />
+    @stack('scripts')
+</body>
+
+</html>
