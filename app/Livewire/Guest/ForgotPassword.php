@@ -26,8 +26,15 @@ class ForgotPassword extends Component
         ]);
 
         $user = User::where('email', $this->email)->first();
+
+        if ($user->status !== 'active') {
+            $this->alert(type: 'warning', message: __('Your account is not active. Please contact the administrator for account activation at :email.', ['email' => config('app.email')]));
+            return;
+        }
+
         $token = Password::createToken($user);
         Mail::to($this->email)->send(new ForgotPasswordLink($user, $token));
+        $this->reset('email');
         $this->alert(type: 'success', message: __('A reset link has been sent to your email address.'));
     }
 

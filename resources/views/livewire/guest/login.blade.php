@@ -1,6 +1,9 @@
 <x-slot:background> {{ asset('images/backgrounds/login.webp') }}</x-slot>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-md space-y-4">
+    @if (session()->has('error'))
+        <x-notification type="error" message="{{ session('error') }}" />
+    @endif
     <x-control-panel.card>
         <x-control-panel.card.header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" class="p-4 text-center" />
         <x-control-panel.card.body class="p-4">

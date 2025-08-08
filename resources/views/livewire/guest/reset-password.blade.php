@@ -1,2 +1,21 @@
-<div class="w-full min-h-screen bg-cover bg-center" style="background-image: url({{ asset('images/backgrounds/reset-password.jpg') }});">
+<x-slot:background> {{ asset('images/backgrounds/reset-password.jpg') }}</x-slot>
+
+<div class="w-full max-w-md space-y-8">
+    <x-control-panel.card>
+        <x-control-panel.card.header :title="__('Reset Password')" :description="__('Please enter your new password below.')" class="p-4 text-center" />
+        <x-control-panel.card.body class="p-4">
+            <form wire:submit.prevent="resetPassword" class="space-y-4">
+                <x-control-panel.form.label :for="__('email')" :label="__('Email')">
+                    <x-control-panel.form.input :label="__('Email')" :for="__('email')" type="email" wire:model="email" placeholder="Your Email Address" autocomplete="email" required />
+                </x-control-panel.form.label>
+                <x-control-panel.form.label :for="__('password')" :label="__('Password')">
+                    <x-control-panel.form.input-password :label="__('Password')" :for="__('password')" wire:model="password" placeholder="Your Password" autocomplete="new-password" required minlength="8" />
+                </x-control-panel.form.label>
+                <x-control-panel.form.label :for="__('password_confirmation')" :label="__('Confirm Password')">
+                    <x-control-panel.form.input-password :label="__('Confirm Password')" :for="__('password_confirmation')" placeholder="Confirm Your Password" wire:model="password_confirmation" autocomplete="new-password" required minlength="8" />
+                </x-control-panel.form.label>
+                <x-control-panel.buttons.button :title="__('Reset Password')" :target="__('resetPassword')" type="submit" class="w-full" />
+            </form>
+        </x-control-panel.card.body>
+    </x-control-panel.card> 
 </div>

@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ForgotPasswordLink extends Mailable implements ShouldQueue
+class ForgotPasswordLink extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -20,7 +20,7 @@ class ForgotPasswordLink extends Mailable implements ShouldQueue
     public function __construct($user, $token)
     {
         $this->user = $user;
-        $this->url = url(config('app.url') . '/password-reset/' . $token . '?email=' . urlencode($user->email));
+        $this->url = url(config('app.url') . '/reset-password/' . $token . '?email=' . urlencode($user->email));
     }
 
 
@@ -36,7 +36,6 @@ class ForgotPasswordLink extends Mailable implements ShouldQueue
         return new Content(
             view: 'mail.guest.forgot-password-link',
             with: [
-                'user' => $this->user,
                 'url' => $this->url,
             ],
         );
