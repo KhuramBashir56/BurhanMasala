@@ -8,7 +8,7 @@
         'info' => 'bg-sky-500 border-sky-500 text-white focus-visible:outline-sky-500 dark:bg-sky-500 dark:border-sky-500 dark:text-white dark:focus-visible:outline-sky-500',
         'light' => 'bg-neutral-950 border-neutral-950 text-neutral-300 focus-visible:outline-neutral-950 dark:bg-white dark:border-white dark:text-neutral-600 dark:focus-visible:outline-white',
         'secondary' => 'bg-neutral-800 border-neutral-800 text-white focus-visible:outline-neutral-800 dark:bg-neutral-300 dark:border-neutral-300 dark:text-black dark:focus-visible:outline-neutral-300',
-        'primary' => 'bg-primary-500 dark:bg-secondary-500 hover:bg-primary-600 dark:hover:bg-secondary-600 border-primary-500 dark:border-secondary-500 text-white focus-visible:outline-primary-500 dark:bg-secondary-500 dark:border-secondary-500 dark:focus-visible:outline-secondary-500',
+        'primary' => 'bg-primary-500 hover:bg-primary-600 border-primary-500 text-white focus-visible:outline-primary-500',
         'success' => 'bg-green-500 border-green-500 text-white focus-visible:outline-green-500 dark:bg-green-500 dark:border-green-500 dark:text-white dark:focus-visible:outline-green-500',
         'warning' => 'bg-amber-500 border-amber-500 text-white focus-visible:outline-amber-500 dark:bg-amber-500 dark:border-amber-500 dark:text-white dark:focus-visible:outline-amber-500',
     ];

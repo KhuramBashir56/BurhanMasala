@@ -5,6 +5,7 @@ namespace App\Livewire\Guest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
@@ -39,10 +40,12 @@ class Register extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered(($user = User::create($validated))));
-
-        Auth::login($user);
-
+        DB::transaction(function () use ($validated) {
+            event(new Registered(($user = User::create($validated))));
+            Auth::login($user);
+            $this->activity('Models/User', $user->id, 'create', 'User registered successfully.');
+        });
+        $this->reset(['name', 'phone', 'email', 'password', 'password_confirmation', 'terms']);
         $this->redirect(route('control-panel.dashboard', absolute: false), navigate: true);
     }
 

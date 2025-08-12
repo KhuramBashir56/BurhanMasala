@@ -5,6 +5,8 @@ namespace App\Livewire\Guest;
 use App\Mail\Guest\ForgotPasswordLink;
 use App\Models\User;
 use App\Traits\AlertMessage;
+use App\Traits\UserActivity;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
@@ -15,7 +17,7 @@ use Livewire\Component;
 #[Layout('components.layouts.guest')]
 class ForgotPassword extends Component
 {
-    use AlertMessage;
+    use AlertMessage, UserActivity;
 
     public string $email = '';
 
@@ -28,12 +30,15 @@ class ForgotPassword extends Component
         $user = User::where('email', $this->email)->first();
 
         if ($user->status !== 'active') {
-            $this->alert(type: 'warning', message: __('Your account is not active. Please contact the administrator for account activation at :email.', ['email' => config('app.email')]));
+            $this->alert('warning', 'Your account is not active. Please contact the administrator for account activation at :email:' . config('app.email') . '.');
             return;
         }
 
-        $token = Password::createToken($user);
-        Mail::to($this->email)->send(new ForgotPasswordLink($user, $token));
+        DB::transaction(function () use ($user) {
+            $token = Password::createToken($user);
+            Mail::to($this->email)->send(new ForgotPasswordLink($user, $token));
+            $this->activity('Models/User', $user->id, 'create', 'Password reset token created and sent via email.');
+        });
         $this->reset('email');
         $this->alert(type: 'success', message: __('A reset link has been sent to your email address.'));
     }

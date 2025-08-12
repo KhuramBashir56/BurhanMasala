@@ -13,8 +13,7 @@ class Dashboard extends Component
 {
     public function render()
     {
-        Auth::logout();
+        // Auth::logout();
         return view('livewire.control-panel.dashboard');
     }
 }
-

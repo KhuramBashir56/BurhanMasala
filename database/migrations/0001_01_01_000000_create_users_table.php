@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -16,11 +13,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('status', ['active', 'inactive', 'deleted', 'banned'])->default('active');
+            $table->boolean('terms')->default(false);
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->boolean('terms')->default(false);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -37,15 +35,25 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('activities', function (Blueprint $table) {
+            $table->id();
+            $table->string('model', 255);
+            $table->unsignedBigInteger('model_id');
+            $table->enum('type', ['create', 'update', 'read', 'delete']);
+            $table->text('description')->nullable();
+            $table->string('ip_address', 45);
+            $table->text('user_agent');
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->timestamp('created_at', 6);
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('activities');
     }
 };

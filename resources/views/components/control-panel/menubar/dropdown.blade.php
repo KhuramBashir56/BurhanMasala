@@ -1,7 +1,7 @@
 @props(['name', 'title', 'status', 'icon'])
 
 <div x-data="{ openSection: '{{ request()->routeIs(explode(' ', $status)) ? $name : '' }}' }" class="w-full last:border-b border-primary-300 dark:border-gray-700">
-    <button x-on:click="openSection = openSection == '{{ $name }}' ? '': '{{ $name }}'" type="button" class="inline-flex px-3 py-1.5 cursor-pointer items-center justify-between w-full font-semibold text-white hover:bg-primary-600 dark:hover:bg-gray-700 active:bg-primary-300 dark:active:bg-gray-500 hover:transition-colors hover:duration-500">
+    <button x-on:click="openSection = openSection == '{{ $name }}' ? '': '{{ $name }}'" type="button" class="inline-flex px-2 py-1.5 cursor-pointer items-center justify-between w-full font-semibold text-white hover:bg-primary-600 dark:hover:bg-gray-700 active:bg-primary-300 dark:active:bg-gray-500 hover:transition-colors hover:duration-500">
         <span class="flex items-center gap-2">
             {{ $icon }}
             <span>{{ $title }}</span>
@@ -11,7 +11,7 @@
         </svg>
     </button>
     <div x-show="openSection == '{{ $name }}'" x-collapse class="relative" style="display: none;">
-        <span class="absolute -top-1.25 left-[23px] h-full border border-white"></span>
+        <span class="absolute -top-0 left-[20px] border border-white" style=" height: calc(100% - 10px);"></span>
         <div class="ps-11 divide-y divide-primary-300 dark:divide-gray-700">
             {{ $slot }}
         </div>

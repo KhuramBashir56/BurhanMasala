@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Guest;
 
+use App\Models\User;
 use App\Traits\AlertMessage;
+use App\Traits\UserActivity;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
@@ -18,7 +19,7 @@ use Livewire\Component;
 #[Layout('components.layouts.guest')]
 class ResetPassword extends Component
 {
-    use AlertMessage;
+    use AlertMessage, UserActivity;
 
     #[Locked]
     public string $token = '';
@@ -61,7 +62,10 @@ class ResetPassword extends Component
             return;
         }
 
-        $this->alert(type: 'success', message: __('Your password has been reset!'));
+        $user = User::where('email', $this->email)->first();
+        $this->activity('Models/User', $user->id, 'update', 'User has reset their password successfully.');
+        $this->reset(['email', 'password', 'password_confirmation']);
+        $this->alert('success', 'Your password has been reset successfully. Please log in with your new password.');
         $this->redirectRoute('login', navigate: true);
     }
 

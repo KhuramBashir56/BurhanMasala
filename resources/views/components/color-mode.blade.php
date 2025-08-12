@@ -17,4 +17,3 @@ $watch('darkMode', value => {
         </div>
     </div>
 </label>
-    

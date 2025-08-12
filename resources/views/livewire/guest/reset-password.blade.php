@@ -17,5 +17,8 @@
                 <x-control-panel.buttons.button :title="__('Reset Password')" :target="__('resetPassword')" type="submit" class="w-full" />
             </form>
         </x-control-panel.card.body>
-    </x-control-panel.card> 
+        <x-control-panel.card.footer class="p-4 justify-center text-center">
+            <p>If you have facing any problem, you can generate a new <x-link :title="__('Password Reset Token')" wire:navigate href="{{ route('forgot-password') }}" />.</p>
+        </x-control-panel.card.footer>
+    </x-control-panel.card>
 </div>

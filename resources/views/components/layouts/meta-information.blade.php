@@ -14,11 +14,10 @@
 <meta property="og:description" content="{{ config('app.description') }}" />
 <meta property="og:url" content="{{ config('app.url') }}" />
 
-<!-- Fonts -->
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-<!-- Styles -->
 @push('styles')
     @if (file_exists(public_path('css/app.cs')))
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -27,7 +26,6 @@
     @endif
 @endpush
 
-<!-- Scripts -->
 @push('scripts')
     @if (file_exists(public_path('js/app.js')))
         <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>

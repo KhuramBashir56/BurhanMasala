@@ -13,18 +13,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
-    protected $fillable = [
-        'name',
-        'phone',
-        'email',
-        'password',
-        'terms',
-    ];
+    protected $table = 'users';
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $dateFormat = 'Y-m-d H:i:s.u';
+
+    protected $fillable = ['name', 'phone', 'email', 'password', 'terms'];
+
+    protected $hidden = ['password', 'remember_token'];
 
     protected function casts(): array
     {

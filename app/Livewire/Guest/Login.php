@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Guest;
 
+use App\Traits\UserActivity;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -16,6 +17,8 @@ use Livewire\Component;
 #[Layout('components.layouts.guest')]
 class Login extends Component
 {
+    use UserActivity;
+
     public string $email = '';
 
     public string $password = '';
@@ -42,6 +45,8 @@ class Login extends Component
 
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
+        $this->reset(['email', 'password', 'remember']);
+        $this->activity('Models/User', Auth::id(), 'read', 'User logged in successfully.');
         $this->redirectIntended(default: route('control-panel.dashboard', absolute: false), navigate: true);
     }
 
