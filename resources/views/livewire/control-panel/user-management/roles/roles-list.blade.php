@@ -16,7 +16,7 @@
             @foreach ($roles as $role)
                 <x-control-panel.table.tr wire:key="'roles-' . $role->id">
                     <x-control-panel.table.td content="{{ $role->name }}" class="whitespace-nowrap" />
-                    <x-control-panel.table.td content="{{ $role->users()->count() }}" class="text-center" />
+                    <x-control-panel.table.td content="{{ count($role->users) }}" class="text-center" />
                     @canany(['change-role-status-active-inactive', 'edit-role', 'view-role-has-permissions'])
                         <x-control-panel.table.actions>
                             @can('change-role-status-active-inactive')

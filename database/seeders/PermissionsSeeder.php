@@ -11,44 +11,58 @@ class PermissionsSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            // Districts Permissions
             [
-                'model' => 'User Management / District',
+                'model' => 'Market Management / District',
                 'name' => 'add-district'
             ],
             [
-                'model' => 'User Management / District',
+                'model' => 'Market Management / District',
                 'name' => 'view-districts-list'
             ],
             [
-                'model' => 'User Management / District',
+                'model' => 'Market Management / District',
                 'name' => 'edit-district'
             ],
-            // Districts Permissions
             [
-                'model' => 'User Management / City',
+                'model' => 'Market Management / City',
                 'name' => 'add-city'
             ],
             [
-                'model' => 'User Management / City',
+                'model' => 'Market Management / City',
                 'name' => 'view-cities-list'
             ],
             [
-                'model' => 'User Management / City',
+                'model' => 'Market Management / City',
                 'name' => 'edit-city'
             ],
-            // User Permissions
+            // Markets management market permissions
             [
-                'model' => 'User Management / User',
-                'name' => 'add-new-user'
+                'model' => 'Market Management / Markets',
+                'name' => 'view-markets-list',
             ],
             [
-                'model' => 'User Management / User',
-                'name' => 'edit-user'
+                'model' => 'Market Management / Markets',
+                'name' => 'add-new-market',
             ],
             [
-                'model' => 'User Management / User',
-                'name' => 'delete-user'
+                'model' => 'Market Management / Markets',
+                'name' => 'edit-market-information',
+            ],
+            [
+                'model' => 'Market Management / Markets',
+                'name' => 'change-market-status',
+            ],
+            [
+                'model' => 'Market Management / Markets',
+                'name' => 'market-visit',
+            ],
+            [
+                'model' => 'Market Management / Markets',
+                'name' => 'add-visit-review',
+            ],
+            [
+                'model' => 'Market Management / Markets',
+                'name' => 'visit-history',
             ],
             // Roles Permissions
             [

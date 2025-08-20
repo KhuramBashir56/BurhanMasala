@@ -67,13 +67,19 @@
                         </form>
                     </div>
                 </div>
-                <div class="relative shrink-0 size-12">
-                    <img src="{{ asset('images/user-avatar.png') }}" alt="User" class="w-full h-full overflow-hidden rounded-full outline-2 outline-white outline-offset-4">
+                <div class="relative shrink-0 size-14">
+                    <div class="w-full h-full overflow-hidden rounded-full outline-2 outline-white outline-offset-4">
+                        @if (Auth::user()->avatar)
+                            <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="User Avatar" class="w-full h-full overflow-hidden rounded-full object-cover object-center">
+                        @else
+                            <span class="flex justify-center items-center w-full h-full font-bold text-3xl text-white">{{ Auth::user()->initials() }}</span>
+                        @endif
+                    </div>
                     <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white {{ Auth::user()->online ? 'bg-green-500' : 'bg-gray-400' }}"></span>
                 </div>
                 <div class="ml-4">
                     <p class="text-sm text-gray-300 dark:text-primary-50">Welcome Back:</p>
-                    <h3 class="text-lg leading-5 font-semibold text-gray-100">{{ Str::limit(Auth::user()->name, 20, '...') }}</h3>
+                    <h3 class="text-lg leading-5 font-semibold text-gray-100">{{ Str::limit(Auth::user()->name, 15, '...') }}</h3>
                     <p class="text-sm text-gray-300 dark:text-primary-50">{{ Str::limit(Auth::user()->email, 28, '...') }}</p>
                 </div>
             </div>

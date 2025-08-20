@@ -21,7 +21,7 @@ class DistrictsList extends Component
     public function render()
     {
         return view('livewire.control-panel.market-management.districts.districts-list', [
-            'districts' => District::when(function ($searchQuery) {
+            'districts' => District::with('province:id,name')->when(function ($searchQuery) {
                 $searchQuery->where('name', 'LIKE', '%' . $this->searchQuery . '%')->orWhereHas('province', function ($province) {
                     $province->where('name', 'LIKE', '%' . $this->searchQuery . '%');
                 });

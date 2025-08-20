@@ -1,9 +1,9 @@
 @props(['for'])
 
 @php
-    $baseClasses = 'block w-full bg-white dark:bg-gray-800 text-black dark:text-white form-input rounded-md';
-    $colorClasses = 'border-gray-600 focus:border-primary-500 focus:ring-primary-500 dark:border-gray400 dark:focus:border-primary-500 dark:focus:ring-primary-500';
-    $errorClasses = 'border-red-600 dark:border-red-500 ring-red-600 focus:border-red-600 focus:ring-red-600';
+    $baseClasses = 'block w-full px-3 py-2 rounded-md bg-white dark:bg-secondary-800 text-black dark:text-white outline-none focus:ring resize-none';
+    $colorClasses = 'border border-secondary-600 focus:border-primary-500 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-500';
+    $errorClasses = 'border-2 border-red-600 dark:border-red-500 focus:ring-red-600';
 @endphp
 
 <div class="relative" x-data="{ charCount: 0, maxLength: {{ $for }}.getAttribute('maxlength') }">

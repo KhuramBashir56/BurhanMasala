@@ -35,9 +35,9 @@ class Register extends Component
     public function register(): void
     {
         $validated = $this->validate([
-            'name' => ['required', 'string', 'max:64'],
+            'name' => ['required', 'string', 'max:48'],
             'phone' => ['required', 'digits:11', 'starts_with:03', 'unique:' . User::class . ',phone'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class . ',email'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:64', 'unique:' . User::class . ',email'],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
             'terms' => ['accepted', 'boolean', 'required'],
         ]);

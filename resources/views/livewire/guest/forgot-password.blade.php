@@ -6,7 +6,7 @@
         <form wire:submit.prevent="sendPasswordResetLink">
             <x-control-panel.card.body class="p-4 gap-4">
                 <x-control-panel.form.label for="email" label="Email">
-                    <x-control-panel.form.input label="Email" :for="__('email')" type="email" wire:model="email" placeholder="Your Email Address" autofocus autocomplete="email" required />
+                    <x-control-panel.form.input label="Email" :for="__('email')" type="email" wire:model="email" placeholder="Your Email Address" maxlength="64" autofocus autocomplete="email" required />
                 </x-control-panel.form.label>
                 <x-control-panel.buttons.button title="Reset password" target="sendPasswordResetLink" type="submit" class="w-full" />
             </x-control-panel.card.body>

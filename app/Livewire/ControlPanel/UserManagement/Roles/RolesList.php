@@ -35,7 +35,7 @@ class RolesList extends Component
     {
         $this->authorize('view-roles-list');
         return view('livewire.control-panel.user-management.roles.roles-list', [
-            'roles' => Role::select('id', 'name', 'status')->orderBy('name')->get()
+            'roles' => Role::with('users')->select('id', 'name', 'status')->orderBy('name')->get()
         ]);
     }
 }

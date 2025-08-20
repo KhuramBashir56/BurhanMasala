@@ -10,31 +10,69 @@ return new class extends Migration
     {
         Schema::create('provinces', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64);
+            $table->string('name', 48);
         });
 
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64);
+            $table->string('name', 48);
             $table->foreignId('province_id')->constrained('provinces')->cascadeOnDelete()->cascadeOnUpdate();
         });
 
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64);
+            $table->string('name', 48);
             $table->foreignId('district_id')->constrained('districts')->cascadeOnDelete()->cascadeOnUpdate();
         });
 
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone')->unique();
-            $table->string('email')->unique()->nullable();
+            $table->string('name',48);
+            $table->string('nic', 13)->nullable();
+            $table->string('phone',11)->unique();
+            $table->string('email',64)->unique()->nullable();
             $table->string('password');
+            $table->string('avatar', 255)->nullable();
             $table->enum('status', ['active', 'inactive', 'deleted', 'banned'])->default('active');
             $table->boolean('terms')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('markets', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 48);
+            $table->foreignId('province_id')->constrained('provinces')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('district_id')->constrained('districts')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->text('description',1500)->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('active');
+        });
+
+        Schema::create('user_has_markets', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('market_id')->constrained('markets')->cascadeOnDelete()->cascadeOnUpdate();
+        });
+
+        Schema::create('customer_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 48);
+            $table->string('description',255)->nullable();
+
+        });
+
+        Schema::create('customers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 48)->nullable();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('market_id')->nullable()->constrained('markets')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('customer_category_id')->nullable()->constrained('customer_categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('near_by', 255);
+            $table->string('street', 255);
+            $table->string('address', 255);
+            $table->string('whatsapp', 11)->nullable();
+            $table->string('location_image', 255)->nullable();
             $table->timestamps();
         });
 
@@ -72,6 +110,10 @@ return new class extends Migration
         Schema::dropIfExists('districts');
         Schema::dropIfExists('cities');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('markets');
+        Schema::dropIfExists('user_has_markets');
+        Schema::dropIfExists('customer_categories');
+        Schema::dropIfExists('user_contacts');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('activities');

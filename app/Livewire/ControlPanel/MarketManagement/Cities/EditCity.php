@@ -53,7 +53,7 @@ class EditCity extends Component
         $this->validate([
             'province' => ['required', 'exists:provinces,id'],
             'district' => ['required', 'exists:districts,id'],
-            'name' => ['required', 'string', 'max:255', 'unique:cities,name,' . $this->city->id],
+            'name' => ['required', 'string', 'max:48', 'unique:cities,name,' . $this->city->id],
         ]);
         try {
             DB::transaction(function () {

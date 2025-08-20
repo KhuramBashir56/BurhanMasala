@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,7 +19,7 @@ class User extends Authenticatable
 
     protected $dateFormat = 'Y-m-d H:i:s.u';
 
-    protected $fillable = ['name', 'phone', 'email', 'password', 'terms'];
+    protected $fillable = ['name', 'nic', 'phone', 'email', 'password', 'avatar', 'terms'];
 
     protected $hidden = ['password', 'remember_token'];
 
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function initials(): string
     {
         return Str::of($this->name)->explode(' ')->take(2)->map(fn($word) => Str::substr($word, 0, 1))->implode('');
+    }
+
+    public function markets(): BelongsToMany
+    {
+        return $this->belongsToMany(Market::class, 'user_has_markets', 'user_id', 'market_id');
     }
 }

@@ -20,4 +20,8 @@ Route::prefix('market-management')->name('market-management.')->group(function (
     Route::get('cities-list', Market\Cities\CitiesList::class)->name('cities-list');
     Route::get('add-new-city', Market\Cities\AddNewCity::class)->name('add-new-city');
     Route::get('{city}/edit-city', Market\Cities\EditCity::class)->name('edit-city');
+    Route::get('markets-list', Market\MarketsList::class)->name('markets-list');
+    Route::get('add-new-market', Market\AddNewMarket::class)->name('add-new-market');
+    Route::get('{market}/edit-market', Market\EditMarket::class)->name('edit-market');
+    Route::get('market-visit', Market\MarketVisit::class)->name('market-visit');
 });

@@ -9,10 +9,10 @@
         <form wire:submit.prevent="login">
             <x-control-panel.card.body class="p-4 gap-4">
                 <x-control-panel.form.label :for="__('email')" :label="__('Email')">
-                    <x-control-panel.form.input :label="__('Email')" :for="__('email')" type="email" wire:model="email" placeholder="Your Email Address" autofocus autocomplete="email" required />
+                    <x-control-panel.form.input :label="__('Email')" :for="__('email')" type="email" wire:model="email" placeholder="Your Email Address" autofocus maxlength="64" autocomplete="email" required />
                 </x-control-panel.form.label>
                 <x-control-panel.form.label :for="__('password')" :label="__('Password')">
-                    <x-control-panel.form.input-password :label="__('Password')" :for="__('password')" wire:model="password" placeholder="Your Password" autocomplete="current-password" required minlength="8" />
+                    <x-control-panel.form.input-password :label="__('Password')" :for="__('password')" wire:model="password" placeholder="Your Password" autocomplete="current-password" required minlength="8" maxlength="64" />
                 </x-control-panel.form.label>
                 <div class="flex items-center justify-between">
                     <x-control-panel.form.checkbox :label="__('Remember me')" :for="__('remember')" wire:model="remember" />

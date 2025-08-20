@@ -28,8 +28,8 @@ class Login extends Component
     public function login(): void
     {
         $this->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
-            'password' => ['required', 'string', 'min:8', 'max:68'],
+            'email' => ['required', 'string', 'email', 'max:64', 'exists:users,email'],
+            'password' => ['required', 'string', 'min:8', 'max:64'],
             'remember' => ['boolean'],
         ]);
 
