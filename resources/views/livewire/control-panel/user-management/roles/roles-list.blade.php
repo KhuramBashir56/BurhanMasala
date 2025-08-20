@@ -8,7 +8,7 @@
         <x-control-panel.table.thead>
             <x-control-panel.table.th content="Role Name" />
             <x-control-panel.table.th content="Accounts" class="text-center" />
-            @canany(['change-role-status-active-inactive', 'edit-role', 'view-role-has-permissionsF'])
+            @canany(['change-role-status-active-inactive', 'edit-role', 'view-role-has-permissions'])
                 <x-control-panel.table.th content="Actions" class="text-center" />
             @endcanany
         </x-control-panel.table.thead>
@@ -17,7 +17,7 @@
                 <x-control-panel.table.tr wire:key="'roles-' . $role->id">
                     <x-control-panel.table.td content="{{ $role->name }}" class="whitespace-nowrap" />
                     <x-control-panel.table.td content="{{ $role->users()->count() }}" class="text-center" />
-                    @canany(['change-role-status-active-inactive', 'edit-role', 'view-role-has-permissionsF'])
+                    @canany(['change-role-status-active-inactive', 'edit-role', 'view-role-has-permissions'])
                         <x-control-panel.table.actions>
                             @can('change-role-status-active-inactive')
                                 <x-control-panel.buttons.toggle-button wire:click="toggleRoleStatus({{ $role->id }})" wire:confirm="Are you sure you want to {{ $role->status === 'active' ? 'inactivate' : 'activate' }} this role?" title="{{ $role->status === 'active' ? 'Inactivate' : 'Activate' }}" status="{{ $role->status === 'active' }}" />

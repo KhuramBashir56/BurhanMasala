@@ -6,8 +6,8 @@
     @endif
     <x-control-panel.card>
         <x-control-panel.card.header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" class="p-4 text-center" />
-        <x-control-panel.card.body class="p-4">
-            <form wire:submit.prevent="login" class="space-y-4">
+        <form wire:submit.prevent="login">
+            <x-control-panel.card.body class="p-4 gap-4">
                 <x-control-panel.form.label :for="__('email')" :label="__('Email')">
                     <x-control-panel.form.input :label="__('Email')" :for="__('email')" type="email" wire:model="email" placeholder="Your Email Address" autofocus autocomplete="email" required />
                 </x-control-panel.form.label>
@@ -19,8 +19,8 @@
                     <x-link :title="__('Forgot password?')" wire:navigate href="{{ route('forgot-password') }}" />
                 </div>
                 <x-control-panel.buttons.button :title="__('Log in')" :target="__('login')" type="submit" class="w-full" />
-            </form>
-        </x-control-panel.card.body>
+            </x-control-panel.card.body>
+        </form>
         <x-control-panel.card.footer class="p-4 justify-center">
             <p>If you don't have an account, you can <x-link :title="__('Register')" wire:navigate href="{{ route('register') }}" />.</p>
         </x-control-panel.card.footer>

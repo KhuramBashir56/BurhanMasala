@@ -4,56 +4,79 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionsSeeder extends Seeder
 {
     public function run(): void
     {
         $permissions = [
-            // User Permissions
+            // Districts Permissions
             [
-                'model' => 'User',
-                'name' => 'view-users-list'
+                'model' => 'User Management / District',
+                'name' => 'add-district'
             ],
             [
-                'model' => 'User',
+                'model' => 'User Management / District',
+                'name' => 'view-districts-list'
+            ],
+            [
+                'model' => 'User Management / District',
+                'name' => 'edit-district'
+            ],
+            // Districts Permissions
+            [
+                'model' => 'User Management / City',
+                'name' => 'add-city'
+            ],
+            [
+                'model' => 'User Management / City',
+                'name' => 'view-cities-list'
+            ],
+            [
+                'model' => 'User Management / City',
+                'name' => 'edit-city'
+            ],
+            // User Permissions
+            [
+                'model' => 'User Management / User',
                 'name' => 'add-new-user'
             ],
             [
-                'model' => 'User',
+                'model' => 'User Management / User',
                 'name' => 'edit-user'
             ],
             [
-                'model' => 'User',
+                'model' => 'User Management / User',
                 'name' => 'delete-user'
             ],
             // Roles Permissions
             [
-                'model' => 'Role',
+                'model' => 'User Management / Role',
                 'name' => 'view-roles-list'
             ],
             [
-                'model' => 'Role',
+                'model' => 'User Management / Role',
                 'name' => 'add-new-role'
             ],
             [
-                'model' => 'Role',
+                'model' => 'User Management / Role',
                 'name' => 'view-role-has-permissions'
             ],
             [
-                'model' => 'Role',
+                'model' => 'User Management / Role',
                 'name' => 'assign-permissions-to-role'
             ],
             [
-                'model' => 'Role',
+                'model' => 'User Management / Role',
                 'name' => 'unassign-permissions-from-role'
             ],
             [
-                'model' => 'Role',
+                'model' => 'User Management / Role',
                 'name' => 'edit-role'
             ],
             [
-                'model' => 'Role',
+                'model' => 'User Management / Role',
                 'name' => 'change-role-status-active-inactive'
             ]
         ];
@@ -65,7 +88,7 @@ class PermissionsSeeder extends Seeder
                     'model' => $permission['model'],
                     'name' => $permission['name']
                 ]);
-                $permission->assignRole('Super Admin');
+                $permission->assignRole(Role::where('id', 1)->first()->name); // Assign to Super Admin role
             }
         }
     }

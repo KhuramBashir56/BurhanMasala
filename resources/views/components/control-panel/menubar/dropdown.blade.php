@@ -11,7 +11,7 @@
         </svg>
     </button>
     <div x-show="openSection == '{{ $name }}'" x-collapse class="relative" style="display: none;">
-        <span class="absolute -top-0 left-[20px] border border-white" style=" height: calc(100% - 10px);"></span>
+        <span class="absolute -top-0 left-[20px] border border-white dark:border-primary-500" style=" height: calc(100% - 10px);"></span>
         <div class="ps-11 divide-y divide-primary-300 dark:divide-gray-700">
             {{ $slot }}
         </div>

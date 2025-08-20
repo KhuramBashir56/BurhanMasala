@@ -3,8 +3,8 @@
 <div class="w-full max-w-md space-y-8">
     <x-control-panel.card>
         <x-control-panel.card.header :title="__('Register an account')" :description="__('Please fill in the form below to create an account')" class="p-4 text-center" />
-        <x-control-panel.card.body class="p-4">
-            <form wire:submit.prevent="register" class="space-y-4">
+        <form wire:submit.prevent="register">
+            <x-control-panel.card.body class="p-4 gap-4">
                 <x-control-panel.form.label :for="__('name')" :label="__('Name')">
                     <x-control-panel.form.input :label="__('Name')" :for="__('name')" wire:model="name" placeholder="Your Full Name" autocomplete="name" required />
                 </x-control-panel.form.label>
@@ -26,8 +26,8 @@
                     </span>
                 </x-control-panel.form.checkbox>
                 <x-control-panel.buttons.button :title="__('Register')" :target="__('register')" type="submit" class="w-full" />
-            </form>
-        </x-control-panel.card.body>
+            </x-control-panel.card.body>
+        </form>
         <x-control-panel.card.footer class="p-4 justify-center">
             <p>If you have an account, you can <x-link :title="__('Log in')" wire:navigate href="{{ route('login') }}" />.</p>
         </x-control-panel.card.footer>

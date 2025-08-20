@@ -8,11 +8,28 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::create('provinces', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 64);
+        });
+
+        Schema::create('districts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 64);
+            $table->foreignId('province_id')->constrained('provinces')->cascadeOnDelete()->cascadeOnUpdate();
+        });
+
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 64);
+            $table->foreignId('district_id')->constrained('districts')->cascadeOnDelete()->cascadeOnUpdate();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('phone')->unique();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->enum('status', ['active', 'inactive', 'deleted', 'banned'])->default('active');
             $table->boolean('terms')->default(false);
@@ -51,6 +68,9 @@ return new class extends Migration
 
     public function down(): void
     {
+        Schema::dropIfExists('provinces');
+        Schema::dropIfExists('districts');
+        Schema::dropIfExists('cities');
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');

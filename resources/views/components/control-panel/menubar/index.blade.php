@@ -4,19 +4,34 @@
             <path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
         </svg>
     </x-control-panel.menubar.item>
-    @canany(['add-new-user', 'view-users-list', 'add-new-role', 'view-roles-list'])
-        <x-control-panel.menubar.dropdown title="User Management" name="user-management" icon="users" status="control-panel.user-management.*">
+    @canany(['add-district', 'view-districts-list', 'add-city', 'view-cities-list'])
+        <x-control-panel.menubar.dropdown title="Market Management" name="market-management" status="control-panel.market-management.*">
             <x-slot:icon>
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 -960 960 960" fill="currentColor">
-                    <path xmlns="http://www.w3.org/2000/svg" d="M620-163 450-333l56-56 114 114 226-226 56 56-282 282Zm220-397h-80v-200h-80v120H280v-120h-80v560h240v80H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v200ZM480-760q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z" />
+                    <path xmlns="http://www.w3.org/2000/svg" d="M160-720v-80h640v80H160Zm0 560v-240h-40v-80l40-200h640l40 200v80h-40v240h-80v-240H560v240H160Zm80-80h240v-160H240v160Zm-38-240h556-556Zm0 0h556l-24-120H226l-24 120Z" />
                 </svg>
             </x-slot>
-            @can('add-new-user')
-                <x-control-panel.menubar.dropdown-item href="" title="Create New User Account" status="" />
+            @can('add-district')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.add-new-district') }}" title="Add New District" status="control-panel.market-management.add-new-district" />
             @endcan
-            @can('view-users-list')
-                <x-control-panel.menubar.dropdown-item href="" title="View User List" status="" />
+            @can('view-districts-list')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.districts-list') }}" title="View District List" status="control-panel.market-management.districts-list" />
             @endcan
+            @can('add-city')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.add-new-city') }}" title="Add New City" status="control-panel.market-management.add-new-city" />
+            @endcan
+            @can('view-cities-list')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.cities-list') }}" title="View Cities List" status="control-panel.market-management.cities-list" />
+            @endcan
+        </x-control-panel.menubar.dropdown>
+    @endcanany
+    @canany(['add-new-user', 'view-users-list', 'add-new-role', 'view-roles-list'])
+        <x-control-panel.menubar.dropdown title="User Management" name="user-management" status="control-panel.user-management.*">
+            <x-slot:icon>
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 -960 960 960" fill="currentColor">
+                    <path xmlns="http://www.w3.org/2000/svg" d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z" />
+                </svg>
+            </x-slot>
             @can('add-new-role')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.user-management.create-role') }}" title="Add New Role" status="control-panel.user-management.create-role" />
             @endcan

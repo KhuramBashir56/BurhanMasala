@@ -7,6 +7,7 @@ use App\Traits\UserActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -16,6 +17,7 @@ class PermissionsList extends Component
 {
     use AlertMessage, UserActivity;
 
+    #[Locked]
     public $role = null;
 
     public $searchQuery = '';
@@ -71,9 +73,7 @@ class PermissionsList extends Component
             'permissionsList' => Permission::whereDoesntHave('roles', function ($query) {
                 $query->where('role_id', $this->role->id);
             })->whereAny(['name', 'model'], 'LIKE', '%' . $this->searchQuery . '%')->select('id', 'name', 'model')->orderBy('model')->get()->groupBy('model'),
-            'permissionsAssigned' => Permission::whereHas('roles', function ($query) {
-                $query->where('role_id', $this->role->id);
-            })->whereAny(['name', 'model'], 'LIKE', '%' . $this->searchQuery . '%')->select('id', 'name', 'model')->orderBy('model')->get()->groupBy('model')
+            'permissionsAssigned' => $this->role->permissions()->whereAny(['name', 'model'], 'LIKE', '%' . $this->searchQuery . '%')->select('id', 'name', 'model')->orderBy('model')->get()->groupBy('model'),
         ]);
     }
 }

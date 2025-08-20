@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Livewire\ControlPanel\MarketManagement\Cities;
+
+use App\Models\City;
+use App\Models\District;
+use App\Models\Province;
+use App\Traits\AlertMessage;
+use App\Traits\UserActivity;
+use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+#[Title('Add New City')]
+#[Layout('components.layouts.control-panel')]
+class AddNewCity extends Component
+{
+    use AlertMessage, UserActivity;
+
+    public $provinces = [];
+
+    public $province = '';
+
+    public $districts = [];
+
+    public $district = '';
+
+    public $name = '';
+
+    public function mount()
+    {
+        $this->provinces = Province::select('id', 'name')->orderBy('name')->get();
+    }
+
+    public function updatedProvince()
+    {
+        $this->districts = District::where('province_id', $this->province)->select('id', 'name')->orderBy('name')->get();
+    }
+
+    public function addNewCity()
+    {
+        $this->authorize('add-city');
+        $this->validate([
+            'province' => ['required', 'integer', 'exists:provinces,id'],
+            'district' => ['required', 'integer', 'exists:districts,id'],
+            'name' => ['required', 'string', 'max:48', 'unique:cities,name'],
+        ]);
+        try {
+            DB::transaction(function () {
+                $city =  City::create([
+                    'name' => $this->name,
+                    'district_id' => $this->district
+                ]);
+                $this->activity('App\Models\City', $city->id, 'create', 'name: ' . $city->name . 'district id: ' . $city->district_id);
+            });
+        } catch (\Throwable $th) {
+            return $this->alert('error', 'Something went wrong. Please try again.');
+        }
+        $this->reset(['province', 'district', 'name']);
+        $this->alert('success', 'City created successfully.');
+    }
+
+    public function render()
+    {
+        $this->authorize('add-city');
+        return view('livewire.control-panel.market-management.cities.add-new-city');
+    }
+}

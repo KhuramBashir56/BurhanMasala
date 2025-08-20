@@ -5,18 +5,20 @@
         </x-control-panel.page-header>
     @endcan
     <x-control-panel.card class="w-full">
-        <x-control-panel.card.body class="w-full gap-4 p-4">
-            <x-control-panel.form.label label="Role Name" for="name">
-                <x-control-panel.form.input type="text" wire:model="name" for="name" maxlength="48" required placeholder="Role Name" />
-            </x-control-panel.form.label>
-        </x-control-panel.card.body>
-        <x-control-panel.card.footer class="p-4 justify-end">
-            @can('view-roles-list')
-                <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.user-management.roles-list') }}" color="secondary" title="Cancel" />
-            @endcan
-            @can('edit-role')
-                <x-control-panel.buttons.button wire:click="updateRole" color="success" target="updateRole" title="Update" />
-            @endcan
-        </x-control-panel.card.footer>
+        <form wire:submit.prevent="updateRole">
+            <x-control-panel.card.body class="w-full gap-4 p-4">
+                <x-control-panel.form.label label="Role Name" for="name">
+                    <x-control-panel.form.input type="text" wire:model="name" for="name" maxlength="48" required placeholder="Role Name" />
+                </x-control-panel.form.label>
+            </x-control-panel.card.body>
+            <x-control-panel.card.footer class="p-4 justify-end">
+                @can('view-roles-list')
+                    <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.user-management.roles-list') }}" color="secondary" title="Cancel" />
+                @endcan
+                @can('edit-role')
+                    <x-control-panel.buttons.button type="submit" color="success" target="updateRole" title="Update" />
+                @endcan
+            </x-control-panel.card.footer>
+        </form>
     </x-control-panel.card>
 </div>

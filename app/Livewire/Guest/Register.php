@@ -3,6 +3,7 @@
 namespace App\Livewire\Guest;
 
 use App\Models\User;
+use App\Traits\UserActivity;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,11 +12,14 @@ use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 #[Title('Register')]
 #[Layout('components.layouts.guest')]
 class Register extends Component
 {
+    use UserActivity;
+
     public string $name = '';
 
     public string $phone = '';
@@ -43,6 +47,7 @@ class Register extends Component
         DB::transaction(function () use ($validated) {
             event(new Registered(($user = User::create($validated))));
             Auth::login($user);
+            $user->assignRole(Role::where('id', 7)->firstOrFail()->name);
             $this->activity('Models/User', $user->id, 'create', 'User registered successfully.');
         });
         $this->reset(['name', 'phone', 'email', 'password', 'password_confirmation', 'terms']);

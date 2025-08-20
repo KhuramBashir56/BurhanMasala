@@ -16,30 +16,26 @@ class RolesSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'name' => 'Shop Owner'
-            ],
-            [
-                'id' => 3,
                 'name' => 'Manager'
             ],
             [
-                'id' => 4,
+                'id' => 3,
                 'name' => 'Sales Man'
             ],
             [
-                'id' => 5,
+                'id' => 4,
                 'name' => 'Store Keeper'
             ],
             [
-                'id' => 6,
+                'id' => 5,
                 'name' => 'Delivery Boy'
             ],
             [
-                'id' => 7,
+                'id' => 6,
                 'name' => 'Customer'
             ],
             [
-                'id' => 8,
+                'id' => 7,
                 'name' => 'Supplier'
             ]
         ];

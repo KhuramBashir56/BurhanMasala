@@ -4,7 +4,7 @@
         @can('view-roles-list')
             <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.user-management.roles-list') }}" title="Go Back" class="w-fit" />
         @endcan
-        <x-control-panel.search title="Search Permissions..." class="sm:max-w-sm" />
+        <x-control-panel.search placeholder="Search Permissions..." class="sm:max-w-sm" />
     </x-control-panel.page-header>
     <div class="grid lg:grid-cols-2 gap-4">
         <div class="space-y-4">
@@ -27,14 +27,14 @@
                                             <x-control-panel.form.checkbox wire:click="assignPermission({{ $permission->id }})" wire:confirm="Are you sure you want to assigned this permission?" for="{!! $permission->name !!}" />
                                         </x-control-panel.table.actions>
                                     @endcan
-                                    <x-control-panel.table.td content="{!! str_replace('-', ' ', $permission->name) !!}" class="capitalize" />
+                                    <x-control-panel.table.td content="{{ str_replace('-', ' ', $permission->name) }}" class="capitalize" />
                                 </x-control-panel.table.tr>
                             @endforeach
                         </x-control-panel.table.tbody>
                     </x-control-panel.table>
                 </div>
             @empty
-                <x-control-panel.table.empty :colspan="2" :message="__('No Permissions Found...')" />
+                <x-control-panel.table.empty colspan="2" message="No Permissions Found..." />
             @endforelse
         </div>
         <div class="space-y-4">
@@ -64,7 +64,7 @@
                     </x-control-panel.table>
                 </div>
             @empty
-                <x-control-panel.table.empty :colspan="2" :message="__('No Permissions Assigned to this Role...')" />
+                <x-control-panel.table.empty colspan="2" message="No Permissions Assigned to this Role..." />
             @endforelse
         </div>
     </div>
