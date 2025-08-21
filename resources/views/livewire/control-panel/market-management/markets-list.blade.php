@@ -25,7 +25,7 @@
                     @canany(['edit-market-information', 'change-market-status'])
                         <x-control-panel.table.actions>
                             @can('change-market-status')
-                                <x-control-panel.buttons.toggle-button wire:click="changeMarketStatus({{ $market->id }})" wire:confirm="Are you sure you want to {{ $market->status === 'active' ? 'inactivate' : 'activate' }} this role?" title="{{ $market->status === 'active' ? 'Inactivate' : 'Activate' }}" status="{{ $market->status === 'active' }}" />
+                                <x-control-panel.buttons.toggle-button wire:click="changeMarketStatus({{ $market->id }})" wire:confirm="Are you sure you want to {{ $market->status === 'active' ? 'inactivate' : 'activate' }} this market area?" title="{{ $market->status === 'active' ? 'Inactivate' : 'Activate' }}" status="{{ $market->status === 'active' }}" />
                             @endcan
                             @can('edit-market-information')
                                 <x-control-panel.buttons.icon-link wire:navigate href="{{ route('control-panel.market-management.edit-market', ['market' => $market->id]) }}" title="Edit City" color="info">

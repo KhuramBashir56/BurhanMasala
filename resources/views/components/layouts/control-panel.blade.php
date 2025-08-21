@@ -37,6 +37,21 @@
     <section id="page-content" class="w-full h-full flex xl:static relative overflow-hidden">
         <aside :class="menu ? 'translate-x-0' : '-translate-x-full'" class="w-full flex flex-col xs:w-xs h-full overflow-y-auto xl:static absolute top-0 left-0 z-50 xl:z-auto xl:translate-x-0 -translate-x-full transition-transform duration-300 bg-primary-500 dark:bg-secondary-900 print:hidden text-white dark:text-white">
             <div class="w-full flex items-center p-4 bg-gray-900 dark:bg-primary-500 relative bg-cover bg-center" style="background-image: url('{{ asset('images/backgrounds/profile-card.avif') }}')">
+                <div class="relative shrink-0 size-12">
+                    <div class="w-full h-full overflow-hidden rounded-full outline-2 outline-white outline-offset-4">
+                        @if (Auth::user()->avatar)
+                            <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="User Avatar" class="w-full h-full overflow-hidden rounded-full object-cover object-center">
+                        @else
+                            <span class="flex justify-center items-center w-full h-full font-bold text-2xl text-white">{{ Auth::user()->initials() }}</span>
+                        @endif
+                    </div>
+                    <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white {{ Auth::user()->online ? 'bg-green-500' : 'bg-gray-400' }}"></span>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm text-gray-300 dark:text-primary-50">Welcome Back:</p>
+                    <h3 class="text-lg leading-5 font-semibold text-gray-100">{{ Str::limit(Auth::user()->name, 15, '...') }}</h3>
+                    <p class="text-sm text-gray-300 dark:text-primary-50">{{ Str::limit(Auth::user()->email, 28, '...') }}</p>
+                </div>
                 <div x-data="{ userMenu: false }" class="absolute bottom-3 right-3 w-full flex flex-col">
                     <button x-on:click="userMenu = !userMenu" class="self-end p-1 -mb-1 w-fit rounded-full hover:bg-gray-600 dark:hover:bg-primary-600 text-gray-100 hover:text-gray-200 active:bg-gray-500 dark:active:bg-primary-400 hover:transition-colors transition-duration-500 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="size-6" fill="currentColor">
@@ -66,21 +81,6 @@
                             @csrf
                         </form>
                     </div>
-                </div>
-                <div class="relative shrink-0 size-14">
-                    <div class="w-full h-full overflow-hidden rounded-full outline-2 outline-white outline-offset-4">
-                        @if (Auth::user()->avatar)
-                            <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="User Avatar" class="w-full h-full overflow-hidden rounded-full object-cover object-center">
-                        @else
-                            <span class="flex justify-center items-center w-full h-full font-bold text-3xl text-white">{{ Auth::user()->initials() }}</span>
-                        @endif
-                    </div>
-                    <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white {{ Auth::user()->online ? 'bg-green-500' : 'bg-gray-400' }}"></span>
-                </div>
-                <div class="ml-4">
-                    <p class="text-sm text-gray-300 dark:text-primary-50">Welcome Back:</p>
-                    <h3 class="text-lg leading-5 font-semibold text-gray-100">{{ Str::limit(Auth::user()->name, 15, '...') }}</h3>
-                    <p class="text-sm text-gray-300 dark:text-primary-50">{{ Str::limit(Auth::user()->email, 28, '...') }}</p>
                 </div>
             </div>
             <p class="text-primary-200 dark:text-secondary-400 border-y border-primary-300 dark:border-secondary-700 px-2">Main Menu</p>

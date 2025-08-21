@@ -35,7 +35,6 @@ class PermissionsSeeder extends Seeder
                 'model' => 'Market Management / City',
                 'name' => 'edit-city'
             ],
-            // Markets management market permissions
             [
                 'model' => 'Market Management / Markets',
                 'name' => 'view-markets-list',
@@ -63,6 +62,18 @@ class PermissionsSeeder extends Seeder
             [
                 'model' => 'Market Management / Markets',
                 'name' => 'visit-history',
+            ],
+            [
+                'model' => 'Market Management / Customer Category',
+                'name' => 'view-customer-categories-list',
+            ],
+            [
+                'model' => 'Market Management / Customer Category',
+                'name' => 'add-new-customer-category',
+            ],
+            [
+                'model' => 'Market Management / Customer Category',
+                'name' => 'edit-customer-category',
             ],
             // Roles Permissions
             [

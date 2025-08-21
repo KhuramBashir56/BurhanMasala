@@ -4,7 +4,7 @@
             <path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
         </svg>
     </x-control-panel.menubar.item>
-    @canany(['add-district', 'view-districts-list', 'add-city', 'view-cities-list', 'add-new-market', 'view-markets-list', 'market-visit'])
+    @canany(['add-district', 'view-districts-list', 'add-city', 'view-cities-list', 'add-new-market', 'view-markets-list', 'market-visit', 'view-customer-categories-list', 'add-new-customer-category'])
         <x-control-panel.menubar.dropdown title="Market Management" name="market-management" status="control-panel.market-management.*">
             <x-slot:icon>
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 -960 960 960" fill="currentColor">
@@ -28,6 +28,12 @@
             @endcan
             @can('view-markets-list')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.markets-list') }}" title="Market Areas List" status="control-panel.market-management.markets-list" />
+            @endcan
+            @can('add-new-customer-category')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.add-new-customer-category') }}" title="Add New Customer Category" status="control-panel.market-management.add-new-customer-category" />
+            @endcan
+            @can('view-customer-categories-list')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.customer-categories-list') }}" title="Customer Categories List" status="control-panel.market-management.customer-categories-list" />
             @endcan
             @can('market-visit')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.market-visit') }}" title="Market Visit" status="control-panel.market-management.market-visit" />

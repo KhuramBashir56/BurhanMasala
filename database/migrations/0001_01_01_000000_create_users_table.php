@@ -59,7 +59,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 48);
             $table->string('description',255)->nullable();
-
         });
 
         Schema::create('customers', function (Blueprint $table) {

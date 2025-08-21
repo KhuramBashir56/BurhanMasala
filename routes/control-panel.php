@@ -23,5 +23,9 @@ Route::prefix('market-management')->name('market-management.')->group(function (
     Route::get('markets-list', Market\MarketsList::class)->name('markets-list');
     Route::get('add-new-market', Market\AddNewMarket::class)->name('add-new-market');
     Route::get('{market}/edit-market', Market\EditMarket::class)->name('edit-market');
+    Route::get('add-new-customer-category', Market\CustomerCategories\AddNewCategory::class)->name('add-new-customer-category');
+    Route::get('customer-categories-list', Market\CustomerCategories\CategoriesList::class)->name('customer-categories-list');
+    Route::get('{category}/edit-customer-category', Market\CustomerCategories\EditCategory::class)->name('edit-customer-category');
+
     Route::get('market-visit', Market\MarketVisit::class)->name('market-visit');
 });
