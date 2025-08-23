@@ -33,12 +33,12 @@ class PermissionsList extends Component
         $this->role = $role;
     }
 
-    public function search()
+    public function search(): void
     {
         $this->searchQuery = $this->searchQuery;
     }
 
-    public function assignPermission(Permission $permission)
+    public function assignPermission(Permission $permission): void
     {
         $this->authorize('assign-permissions-to-role');
         try {
@@ -46,13 +46,13 @@ class PermissionsList extends Component
                 $this->role->givePermissionTo($permission->name);
                 $this->activity('Spatie\Permission\Models\Role', $this->role->id, 'update', 'Permission ' . $permission->name . ' assigned to Role');
             });
-            return $this->alert('success', 'Permission assigned successfully.');
+            $this->alert('success', 'Permission assigned successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 
-    public function unassignPermission(Permission $permission)
+    public function unassignPermission(Permission $permission): void
     {
         $this->authorize('unassign-permissions-from-role');
         try {
@@ -60,9 +60,9 @@ class PermissionsList extends Component
                 $this->role->revokePermissionTo($permission->name);
                 $this->activity('Spatie\Permission\Models\Role', $this->role->id, 'update', 'Permission ' . $permission->name . ' removed from Role');
             });
-            return $this->alert('success', 'Permission removed successfully.');
+            $this->alert('success', 'Permission removed successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 

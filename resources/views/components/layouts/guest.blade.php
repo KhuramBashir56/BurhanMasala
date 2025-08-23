@@ -9,12 +9,12 @@
     @stack('styles')
 </head>
 
-<body class="bg-primary-500 dark:bg-gray-950 text-gray-950 dark:text-gray-100 relative transition-colors duration-500">
+<body class="w-full min-h-screen px-4 py-16  flex flex-col justify-center items-center bg-cover bg-center bg-primary-500 dark:bg-gray-950 text-gray-950 dark:text-gray-100 relative transition-colors duration-500" style="background-image: url({{ $background }});">
     <x-color-mode class="absolute top-4 right-4" />
-    <div class="w-full min-h-screen px-4 py-16 flex flex-col justify-center items-center bg-cover bg-center" style="background-image: url({{ $background }});">
-        <x-logo wire:navigate href="{{ route('home') }}" class="w-48 mb-4" />
-        {{ $slot }}
-    </div>
+    @if (session()->has('error'))
+        <x-notification type="error" message="{{ session('error') }}" class="mb-4" />
+    @endif
+    {{ $slot }}
     <x-alert-message />
     @stack('scripts')
 </body>

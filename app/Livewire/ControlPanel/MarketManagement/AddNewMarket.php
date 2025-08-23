@@ -33,12 +33,12 @@ class AddNewMarket extends Component
 
     public $description = '';
 
-    public function mount()
+    public function mount(): void
     {
         $this->provinces = Province::select('id', 'name')->orderBy('name')->get();
     }
 
-    public function updatedProvince()
+    public function updatedProvince(): void
     {
         $this->districts = District::where('province_id', $this->province)->select('id', 'name')->orderBy('name')->get();
         $this->cities = [];
@@ -46,12 +46,12 @@ class AddNewMarket extends Component
         $this->city = '';
     }
 
-    public function updatedDistrict()
+    public function updatedDistrict(): void
     {
         $this->cities = City::where('district_id', $this->district)->select('id', 'name')->orderBy('name')->get();
     }
 
-    public function addNewMarket()
+    public function addNewMarket(): void
     {
         $this->authorize('add-new-market');
         $this->validate([
@@ -61,7 +61,6 @@ class AddNewMarket extends Component
             'city' => ['required', 'integer', 'exists:cities,id'],
             'description' => ['required', 'string', 'max:1500'],
         ]);
-
         try {
             DB::transaction(function () {
                 $market = Market::create([
@@ -73,12 +72,11 @@ class AddNewMarket extends Component
                 ]);
                 $this->activity('App\Models\Market', $market->id, 'create', 'created a new market name: ' . $this->name . ' in province: ' . $this->province . ', district: ' . $this->district . ', city: ' . $this->city . ', description: ' . $this->description);
             });
+            $this->reset(['province', 'district', 'city', 'name', 'description']);
+            $this->alert('success', 'Market added successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
-
-        $this->reset(['province', 'district', 'city', 'name', 'description']);
-        $this->alert('success', 'Market added successfully.');
     }
 
     #[Title('Add New Market Area')]

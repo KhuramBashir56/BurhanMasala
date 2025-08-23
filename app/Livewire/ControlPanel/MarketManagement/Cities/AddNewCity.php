@@ -28,17 +28,17 @@ class AddNewCity extends Component
 
     public $name = '';
 
-    public function mount()
+    public function mount(): void
     {
         $this->provinces = Province::select('id', 'name')->orderBy('name')->get();
     }
 
-    public function updatedProvince()
+    public function updatedProvince(): void
     {
         $this->districts = District::where('province_id', $this->province)->select('id', 'name')->orderBy('name')->get();
     }
 
-    public function addNewCity()
+    public function addNewCity(): void
     {
         $this->authorize('add-city');
         $this->validate([
@@ -54,11 +54,11 @@ class AddNewCity extends Component
                 ]);
                 $this->activity('App\Models\City', $city->id, 'create', 'name: ' . $city->name . 'district id: ' . $city->district_id);
             });
+            $this->reset(['province', 'district', 'name']);
+            $this->alert('success', 'City created successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
-        $this->reset(['province', 'district', 'name']);
-        $this->alert('success', 'City created successfully.');
     }
 
     public function render()

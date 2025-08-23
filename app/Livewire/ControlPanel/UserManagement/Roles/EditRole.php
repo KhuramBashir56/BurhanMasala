@@ -20,13 +20,13 @@ class EditRole extends Component
 
     public $name = '';
 
-    public function mount(Role $role)
+    public function mount(Role $role): void
     {
         $this->role = $role;
         $this->name = $role->name;
     }
 
-    public function updateRole()
+    public function updateRole(): void
     {
         $this->authorize('edit-role');
         $this->validate([
@@ -42,9 +42,9 @@ class EditRole extends Component
             $this->alert('success', 'Role updated successfully.');
             $this->reset(['name']);
             $this->role = null;
-            return $this->redirectRoute('control-panel.user-management.roles-list', navigate: true);
+            $this->redirectRoute('control-panel.user-management.roles-list', navigate: true);
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 

@@ -17,15 +17,23 @@ Route::prefix('market-management')->name('market-management.')->group(function (
     Route::get('districts-list', Market\Districts\DistrictsList::class)->name('districts-list');
     Route::get('add-new-district', Market\Districts\AddNewDistrict::class)->name('add-new-district');
     Route::get('{district}/edit-district', Market\Districts\EditDistrict::class)->name('edit-district');
+
     Route::get('cities-list', Market\Cities\CitiesList::class)->name('cities-list');
     Route::get('add-new-city', Market\Cities\AddNewCity::class)->name('add-new-city');
     Route::get('{city}/edit-city', Market\Cities\EditCity::class)->name('edit-city');
+
     Route::get('markets-list', Market\MarketsList::class)->name('markets-list');
     Route::get('add-new-market', Market\AddNewMarket::class)->name('add-new-market');
     Route::get('{market}/edit-market', Market\EditMarket::class)->name('edit-market');
+    
     Route::get('add-new-customer-category', Market\CustomerCategories\AddNewCategory::class)->name('add-new-customer-category');
     Route::get('customer-categories-list', Market\CustomerCategories\CategoriesList::class)->name('customer-categories-list');
     Route::get('{category}/edit-customer-category', Market\CustomerCategories\EditCategory::class)->name('edit-customer-category');
+
+    Route::get('add-new-customer', Market\Customer\AddNewCustomer::class)->name('add-new-customer');
+    Route::get('customers-list', Market\Customer\CustomersList::class)->name('customers-list');
+    Route::get('{customer}/edit-customer', Market\Customer\EditCustomer::class)->name('edit-customer');
+    Route::get('{customer}/customer-profile', Market\Customer\CustomerProfile::class)->name('customer-profile');
 
     Route::get('market-visit', Market\MarketVisit::class)->name('market-visit');
 });

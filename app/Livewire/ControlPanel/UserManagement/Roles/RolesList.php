@@ -16,7 +16,7 @@ class RolesList extends Component
 {
     use AlertMessage, UserActivity;
 
-    public function toggleRoleStatus(Role $role)
+    public function toggleRoleStatus(Role $role): void
     {
         $this->authorize('change-role-status-active-inactive');
         try {
@@ -27,7 +27,7 @@ class RolesList extends Component
             });
             $this->alert('success', 'Role status updated successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 

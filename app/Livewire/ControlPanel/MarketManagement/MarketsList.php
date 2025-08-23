@@ -18,12 +18,12 @@ class MarketsList extends Component
 
     public $searchQuery = '';
 
-    public function search()
+    public function search(): void
     {
         $this->searchQuery = $this->searchQuery;
     }
 
-    public function changeMarketStatus(Market $market)
+    public function changeMarketStatus(Market $market): void
     {
         $this->authorize('change-market-status');
         try {
@@ -32,10 +32,10 @@ class MarketsList extends Component
                 $market->update();
                 $this->activity('App\Models\Market', $market->id, 'update', 'Market status changed as ' . $market->status);
             });
+            $this->alert('success', 'Market status changed successfully');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong, please try again');
+            $this->alert('error', 'Something went wrong, please try again');
         }
-        $this->alert('success', 'Market status changed successfully');
     }
 
     #[Title('Markets List')]

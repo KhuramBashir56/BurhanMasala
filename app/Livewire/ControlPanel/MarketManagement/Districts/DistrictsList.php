@@ -13,7 +13,7 @@ class DistrictsList extends Component
 {
     public $searchQuery = '';
 
-    public function search()
+    public function search(): void
     {
         $this->searchQuery = $this->searchQuery;
     }

@@ -20,7 +20,7 @@ class AddNewCategory extends Component
 
     public $description = '';
 
-    public function addNewCustomerCategory()
+    public function addNewCustomerCategory(): void
     {
         $this->authorize('add-new-customer-category');
         $this->validate([
@@ -35,11 +35,11 @@ class AddNewCategory extends Component
                 ]);
                 $this->activity('App\Models\CustomerCategory', $category->id, 'create', 'created a new customer category name: ' . $this->name . ', description: ' . $this->description);
             });
+            $this->reset(['name', 'description']);
+            $this->alert('success', 'Customer category added successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
-        $this->reset(['name', 'description']);
-        $this->alert('success', 'Customer category added successfully.');
     }
     public function render()
     {

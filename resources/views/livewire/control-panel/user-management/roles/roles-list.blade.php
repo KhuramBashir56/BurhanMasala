@@ -1,8 +1,6 @@
 <div class="w-full space-y-4" x-data="">
     @can('add-new-role')
-        <x-control-panel.page-header>
-            <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.user-management.create-role') }}" title="Add New Role" class="w-fit" />
-        </x-control-panel.page-header>
+        <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.user-management.create-role') }}" title="Add New Role" class="w-fit" />
     @endcan
     <x-control-panel.table>
         <x-control-panel.table.thead>

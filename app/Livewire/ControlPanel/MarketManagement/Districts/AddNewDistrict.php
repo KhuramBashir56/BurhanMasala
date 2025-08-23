@@ -18,17 +18,17 @@ class AddNewDistrict extends Component
     use AlertMessage, UserActivity;
 
     public $provinces = [];
-    
+
     public $province = '';
 
     public $name = '';
 
-    public function mount()
+    public function mount(): void
     {
         $this->provinces = Province::select('id', 'name')->orderBy('name')->get();
     }
 
-    public function addNewDistrict()
+    public function addNewDistrict(): void
     {
         $this->authorize('add-district');
         $this->validate([
@@ -43,11 +43,11 @@ class AddNewDistrict extends Component
                 ]);
                 $this->activity('App\Models\District', $district->id, 'create', 'name: ' . $district->name . 'province id: ' . $district->province_id);
             });
+            $this->reset(['province', 'name']);
+            $this->alert('success', 'District created successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
-        $this->reset(['province', 'name']);
-        $this->alert('success', 'District created successfully.');
     }
 
     public function render()

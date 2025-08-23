@@ -51,6 +51,7 @@ class PermissionsSeeder extends Seeder
                 'model' => 'Market Management / Markets',
                 'name' => 'change-market-status',
             ],
+            //
             [
                 'model' => 'Market Management / Markets',
                 'name' => 'market-visit',
@@ -63,6 +64,7 @@ class PermissionsSeeder extends Seeder
                 'model' => 'Market Management / Markets',
                 'name' => 'visit-history',
             ],
+            //
             [
                 'model' => 'Market Management / Customer Category',
                 'name' => 'view-customer-categories-list',
@@ -74,6 +76,22 @@ class PermissionsSeeder extends Seeder
             [
                 'model' => 'Market Management / Customer Category',
                 'name' => 'edit-customer-category',
+            ],
+            [
+                'model' => 'Market Management / Customer',
+                'name' => 'add-new-customer'
+            ],
+            [
+                'model' => 'Market Management / Customer',
+                'name' => 'view-customers-list'
+            ],
+            [
+                'model' => 'Market Management / Customer',
+                'name' => 'edit-customers'
+            ],
+            [
+                'model' => 'Market Management / Customer',
+                'name' => 'view-customer-profile'
             ],
             // Roles Permissions
             [

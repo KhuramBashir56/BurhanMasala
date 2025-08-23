@@ -27,7 +27,7 @@ class EditDistrict extends Component
 
     public $name = '';
 
-    public function mount(District $district)
+    public function mount(District $district): void
     {
         $this->district = $district;
         $this->province = $district->province_id;
@@ -35,7 +35,7 @@ class EditDistrict extends Component
         $this->provinces = Province::select('id', 'name')->orderBy('name')->get();
     }
 
-    public function updateDistrict()
+    public function updateDistrict(): void
     {
         $this->authorize('edit-district');
         $this->validate([
@@ -50,12 +50,12 @@ class EditDistrict extends Component
                 ]);
                 $this->activity('App\Models\District', $this->district->id, 'update', 'name: ' . $this->name . 'province id: ' . $this->province);
             });
+            $this->reset(['district', 'province', 'name']);
+            $this->alert('success', 'District updated successfully.');
+            $this->redirectRoute('control-panel.market-management.districts-list', navigate: true);
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
-        $this->reset(['district', 'province', 'name']);
-        $this->alert('success', 'District updated successfully.');
-        return $this->redirectRoute('control-panel.market-management.districts-list', navigate: true);
     }
 
     public function render()

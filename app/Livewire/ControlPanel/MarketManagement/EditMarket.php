@@ -37,7 +37,7 @@ class EditMarket extends Component
 
     public $description = '';
 
-    public function mount(Market $market)
+    public function mount(Market $market): void
     {
         $this->market = $market;
         $this->name = $market->name;
@@ -51,7 +51,7 @@ class EditMarket extends Component
     }
 
 
-    public function updatedProvince()
+    public function updatedProvince(): void
     {
         $this->districts = District::where('province_id', $this->province)->select('id', 'name')->orderBy('name')->get();
         $this->cities = [];
@@ -59,12 +59,12 @@ class EditMarket extends Component
         $this->city = '';
     }
 
-    public function updatedDistrict()
+    public function updatedDistrict(): void
     {
         $this->cities = City::where('district_id', $this->district)->select('id', 'name')->orderBy('name')->get();
     }
 
-    public function updateMarket()
+    public function updateMarket(): void
     {
         $this->authorize('edit-market-information');
         $this->validate([
@@ -85,11 +85,11 @@ class EditMarket extends Component
                 ]);
                 $this->activity('App\Models\Market', $this->market->id, 'update', 'updated market information name: ' . $this->name . ' in province: ' . $this->province . ', district: ' . $this->district . ', city: ' . $this->city . ', description: ' . $this->description);
             });
+            $this->alert('success', 'Market information updated successfully.');
+            $this->redirectRoute('control-panel.market-management.markets-list', navigate: true);
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
-        $this->alert('success', 'Market information updated successfully.');
-        $this->redirectRoute('control-panel.market-management.markets-list', navigate: true);
     }
 
     #[Title('Edit Market Area')]

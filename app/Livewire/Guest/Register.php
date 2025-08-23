@@ -36,7 +36,7 @@ class Register extends Component
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:48'],
-            'phone' => ['required', 'digits:11', 'starts_with:03', 'unique:' . User::class . ',phone'],
+            'phone' => ['required', 'digits:11', 'regex:/^03[0-9]{9}$/', 'unique:' . User::class . ',phone'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:64', 'unique:' . User::class . ',email'],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
             'terms' => ['accepted', 'boolean', 'required'],
@@ -47,7 +47,7 @@ class Register extends Component
         DB::transaction(function () use ($validated) {
             event(new Registered(($user = User::create($validated))));
             Auth::login($user);
-            $user->assignRole(Role::where('id', 7)->firstOrFail()->name);
+            $user->assignRole(Role::where('id', 6)->firstOrFail()->name);
             $this->activity('Models/User', $user->id, 'create', 'User registered successfully.');
         });
         $this->reset(['name', 'phone', 'email', 'password', 'password_confirmation', 'terms']);

@@ -19,7 +19,7 @@ class User extends Authenticatable
 
     protected $dateFormat = 'Y-m-d H:i:s.u';
 
-    protected $fillable = ['name', 'nic', 'phone', 'email', 'password', 'avatar', 'terms'];
+    protected $fillable = ['name', 'nic', 'phone', 'whatsapp', 'email', 'password', 'avatar', 'terms'];
 
     protected $hidden = ['password', 'remember_token'];
 

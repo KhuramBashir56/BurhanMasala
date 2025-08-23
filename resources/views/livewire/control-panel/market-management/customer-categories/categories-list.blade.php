@@ -1,8 +1,6 @@
 <div class="w-full space-y-4" x-data="">
     @can('add-new-customer-category')
-        <x-control-panel.page-header>
-            <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.add-new-customer-category') }}" title="Add New Category" class="w-fit" />
-        </x-control-panel.page-header>
+        <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.add-new-customer-category') }}" title="Add New Category" class="w-fit" />
     @endcan
     <x-control-panel.table>
         <x-control-panel.table.thead>
@@ -33,7 +31,7 @@
                     @endcanany
                 </x-control-panel.table.tr>
             @empty
-                <x-control-panel.table.empty colspan="3" message="No District Found..." />
+                <x-control-panel.table.empty colspan="3" message="No Categories Found..." />
             @endforelse
         </x-control-panel.table.tbody>
     </x-control-panel.table>

@@ -2,7 +2,7 @@
 
 @php
     $baseClasses = 'flex flex-col items-center justify-center w-full h-full bg-white dark:bg-gray-800 border-2 border-dashed rounded-lg cursor-pointer hover:transition-colors hover:duration-500 relative overflow-hidden';
-    $colorClasses = 'border-gray-600 dark:border-gray-600 hover:border-primary-500 dark:border-gray400 dark:hover:border-primary-500';
+    $colorClasses = 'border-gray-600 dark:border-gray-600 hover:border-primary-500 dark:border-gray-400 dark:hover:border-primary-500';
     $errorClasses = 'border-red-600 dark:border-red-500 hover:border-red-600';
 @endphp
 
@@ -12,7 +12,7 @@
             {{ $slot }}
         </div>
         <div class="w-full bg-gray-200 dark:bg-gray-700 absolute bottom-0 z-30" x-show="uploading" style="display: none;">
-            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none" x-bind:style="'width: ' + progress + '%'" x-text="progress + '%'"> 45%</div>
+            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none" x-bind:style="'width: ' + progress + '%'" x-text="progress + '%'"></div>
         </div>
         <div class="flex flex-col items-center justify-center p-2 text-gray-400 dark:text-gray-500 bg-transparent text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-10" viewBox="0 -960 960 960" fill="currentColor">
@@ -24,6 +24,6 @@
         <input type="file" name="{{ $for }}" id="{{ $for }}" {{ $attributes->merge(['class' => 'hidden']) }} wire:loading.attr="disabled" />
     </label>
     @error($for)
-        <x-ui.form.error-message :message="$message" class="absolute left-0 top-full" />
+        <x-control-panel.form.error-message :message="$message" class="absolute left-0 top-full" />
     @enderror
 </div>

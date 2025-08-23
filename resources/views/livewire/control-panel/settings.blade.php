@@ -47,9 +47,7 @@
                             </x-control-panel.table.actions>
                         </x-control-panel.table.tr>
                     @empty
-                        <x-control-panel.table.tr>
-                            <x-control-panel.table.td colspan="2" content="No Login Sessions Found..." class="text-center text-xl" />
-                        </x-control-panel.table.tr>
+                        <x-control-panel.table.empty colspan="2" message="No Login Sessions Found..." />
                     @endforelse
                 </x-control-panel.table.tbody>
             </x-control-panel.table>

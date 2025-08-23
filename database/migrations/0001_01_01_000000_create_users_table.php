@@ -28,10 +28,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name',48);
-            $table->string('nic', 13)->nullable();
+            $table->string('nic', 15)->nullable();
             $table->string('phone',11)->unique();
+            $table->string('whatsapp', 11)->nullable();
             $table->string('email',64)->unique()->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('avatar', 255)->nullable();
             $table->enum('status', ['active', 'inactive', 'deleted', 'banned'])->default('active');
             $table->boolean('terms')->default(false);
@@ -63,15 +64,14 @@ return new class extends Migration
 
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 48)->nullable();
+            $table->string('title', 48)->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('market_id')->nullable()->constrained('markets')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('customer_category_id')->nullable()->constrained('customer_categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('near_by', 255);
             $table->string('street', 255);
             $table->string('address', 255);
-            $table->string('whatsapp', 11)->nullable();
-            $table->string('location_image', 255)->nullable();
+            $table->string('location_view', 255)->nullable();
             $table->timestamps();
         });
 

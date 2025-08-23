@@ -18,7 +18,7 @@ class CreateRole extends Component
 
     public $name = '';
 
-    public function addNewRole()
+    public function addNewRole(): void
     {
         $this->authorize('add-new-role');
         $this->validate([
@@ -32,9 +32,9 @@ class CreateRole extends Component
                 $this->activity('Spatie\Permission\Models\Role', $role->id, 'create', ' Role created with name: ' . $role->name . '.');
             });
             $this->reset('name');
-            return $this->alert('success', 'Role created successfully.');
+            $this->alert('success', 'Role created successfully.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 

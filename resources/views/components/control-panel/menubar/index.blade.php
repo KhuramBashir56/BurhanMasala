@@ -35,6 +35,12 @@
             @can('view-customer-categories-list')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.customer-categories-list') }}" title="Customer Categories List" status="control-panel.market-management.customer-categories-list" />
             @endcan
+            @can('add-new-customer')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.add-new-customer') }}" title="Add New Customer" status="control-panel.market-management.add-new-customer" />
+            @endcan
+            @can('view-customers-list')
+                <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.customers-list') }}" title="Customers List" status="control-panel.market-management.customers-list" />
+            @endcan
             @can('market-visit')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.market-visit') }}" title="Market Visit" status="control-panel.market-management.market-visit" />
             @endcan

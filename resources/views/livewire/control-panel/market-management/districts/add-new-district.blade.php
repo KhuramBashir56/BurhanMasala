@@ -1,8 +1,6 @@
 <div class="w-full space-y-4">
     @can('view-districts-list')
-        <x-control-panel.page-header>
-            <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.districts-list') }}" title="Go Back" class="w-fit" />
-        </x-control-panel.page-header>
+        <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.districts-list') }}" title="Go Back" class="w-fit" />
     @endcan
     <x-control-panel.card class="w-full">
         <form wire:submit.prevent="addNewDistrict">

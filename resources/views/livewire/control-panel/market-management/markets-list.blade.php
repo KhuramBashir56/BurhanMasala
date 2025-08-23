@@ -1,7 +1,7 @@
 <div class="w-full space-y-4" x-data="">
     <x-control-panel.page-header>
         @can('add-new-market')
-            <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.add-new-market') }}" title="Add New City" class="w-fit" />
+            <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.add-new-market') }}" title="Add New Market Area" class="w-fit" />
         @endcan
         <x-control-panel.search placeholder="Search Market..." class="sm:max-w-sm" />
     </x-control-panel.page-header>
@@ -38,7 +38,7 @@
                     @endcanany
                 </x-control-panel.table.tr>
             @empty
-                <x-control-panel.table.empty colspan="4" message="No Cities Found..." />
+                <x-control-panel.table.empty colspan="3" message="No markets Found..." />
             @endforelse
         </x-control-panel.table.tbody>
     </x-control-panel.table>

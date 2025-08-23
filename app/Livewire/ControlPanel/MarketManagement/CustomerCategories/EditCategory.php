@@ -22,14 +22,14 @@ class EditCategory extends Component
 
     public $description = '';
 
-    public function mount(CustomerCategory $category)
+    public function mount(CustomerCategory $category): void
     {
         $this->category = $category;
         $this->name = $category->name;
         $this->description = $category->description;
     }
 
-    public function updateCustomerCategory()
+    public function updateCustomerCategory(): void
     {
         $this->authorize('edit-customer-category');
         $this->validate([
@@ -44,11 +44,11 @@ class EditCategory extends Component
                 ]);
                 $this->activity('App\Models\CustomerCategory', $this->category->id, 'update', 'updated a customer category name: ' . $this->name . ', description: ' . $this->description);
             });
+            $this->alert('success', 'Customer category updated successfully.');
+            $this->redirectRoute('control-panel.market-management.customer-categories-list', navigate: true);
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
-        $this->alert('success', 'Customer category updated successfully.');
-        $this->redirectRoute('control-panel.market-management.customer-categories-list', navigate: true);
     }
 
     public function render()

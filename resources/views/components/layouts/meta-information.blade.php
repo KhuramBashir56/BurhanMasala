@@ -19,7 +19,7 @@
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
 @push('styles')
-    @if (file_exists(public_path('css/app.cs')))
+    @if (file_exists(public_path('css/app.css')))
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @else
         @vite(['resources/css/app.css'])

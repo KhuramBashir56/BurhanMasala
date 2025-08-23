@@ -33,8 +33,8 @@ class ResetPassword extends Component
     public function mount(string $token): void
     {
         $this->token = $token;
-
         $this->email = request()->string('email');
+        return;
     }
 
     public function resetPassword(): void

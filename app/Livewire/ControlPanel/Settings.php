@@ -19,7 +19,7 @@ class Settings extends Component
 
     public $sessions = [];
 
-    public function mount()
+    public function mount(): void
     {
         $this->sessions = Auth::user()->sessions()->orderBy('last_activity', 'desc')->get()->map(function ($session) {
             $agent = new Agent();
@@ -42,7 +42,7 @@ class Settings extends Component
 
     public $password_confirmation = '';
 
-    public function updatePassword()
+    public function updatePassword(): void
     {
         $this->validate([
             'current_password' => ['required', 'string', 'min:8', 'max:64', 'current_password'],
@@ -57,9 +57,9 @@ class Settings extends Component
                 $this->activity('User', Auth::user()->id, 'update', 'Password changed successfully.');
             });
             $this->reset(['current_password', 'password', 'password_confirmation']);
-            return $this->alert('success', 'Password updated successfully. Please do not forget your new password. You will need it to log in next time.');
+            $this->alert('success', 'Password updated successfully. Please do not forget your new password. You will need it to log in next time.');
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 

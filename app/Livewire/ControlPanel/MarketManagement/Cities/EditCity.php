@@ -32,7 +32,7 @@ class EditCity extends Component
 
     public $name = '';
 
-    public function mount(City $city)
+    public function mount(City $city): void
     {
         $this->city = $city;
         $this->province = $city->district->province_id;
@@ -42,12 +42,12 @@ class EditCity extends Component
         $this->updatedProvince();
     }
 
-    public function updatedProvince()
+    public function updatedProvince(): void
     {
         $this->districts = District::where('province_id', $this->province)->select('id', 'name')->orderBy('name')->get();
     }
 
-    public function updateCity()
+    public function updateCity(): void
     {
         $this->authorize('edit-city');
         $this->validate([
@@ -63,11 +63,11 @@ class EditCity extends Component
                 ]);
                 $this->activity('App\Models\City', $this->city->id, 'update', 'name: ' . $this->name . 'district id: ' . $this->district);
             });
+            $this->alert('success', 'City updated successfully.');
+            $this->redirectRoute('control-panel.market-management.cities-list', navigate: true);
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Failed to update city. Please try again.');
+            $this->alert('error', 'Failed to update city. Please try again.');
         }
-        $this->alert('success', 'City updated successfully.');
-        $this->redirectRoute('control-panel.market-management.cities-list', navigate: true);
     }
 
     public function render()
