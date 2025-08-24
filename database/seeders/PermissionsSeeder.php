@@ -87,11 +87,19 @@ class PermissionsSeeder extends Seeder
             ],
             [
                 'model' => 'Market Management / Customer',
-                'name' => 'edit-customers'
+                'name' => 'view-customer-profile'
             ],
             [
-                'model' => 'Market Management / Customer',
-                'name' => 'view-customer-profile'
+                'model' => 'Market Management / Customer / Profile',
+                'name' => 'edit-customer-profile-image'
+            ],
+            [
+                'model' => 'Market Management / Customer / Profile',
+                'name' => 'block-customer-account'
+            ],
+            [
+                'model' => 'Market Management / Customer / Profile',
+                'name' => 'reactivate-customer-account'
             ],
             // Roles Permissions
             [
@@ -121,7 +129,15 @@ class PermissionsSeeder extends Seeder
             [
                 'model' => 'User Management / Role',
                 'name' => 'change-role-status-active-inactive'
-            ]
+            ],
+            [
+                'model' => 'User Management / User',
+                'name' => 'block-account'
+            ],
+            [
+                'model' => 'User Management / User',
+                'name' => 'reactivate-account'
+            ],
         ];
 
         $exists  = Permission::all()->pluck('name')->toArray();
@@ -131,7 +147,7 @@ class PermissionsSeeder extends Seeder
                     'model' => $permission['model'],
                     'name' => $permission['name']
                 ]);
-                $permission->assignRole(Role::where('id', 1)->first()->name); // Assign to Super Admin role
+                $permission->assignRole(Role::where('id', 1)->first()->name);
             }
         }
     }

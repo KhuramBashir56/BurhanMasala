@@ -1,14 +1,14 @@
 @props(['title', 'icon', 'color' => 'primary', 'target' => null])
 
 @php
-    $baseClasses = 'whitespace-nowrap flex justify-center items-center rounded-md p-1 font-medium tracking-wide transition text-center border focus-visible:outline-2 focus-visible:outline-offset-2 active:outline-offset-0 hover:opacity-75 active:opacity-100 disabled:opacity-75 rounded-md cursor-pointer capitalize';
+    $baseClasses = 'whitespace-nowrap flex justify-center items-center rounded-md p-1 font-medium tracking-wide transition text-center border focus-visible:outline-2 focus-visible:outline-offset-2 active:outline-offset-0 opacity-90 hover:opacity-100 active:opacity-80 disabled:opacity-60 rounded-md capitalize';
     $colorClasses = [
         'danger' => 'bg-red-500 border-red-500 text-white focus-visible:outline-red-500 dark:bg-red-500 dark:border-red-500 dark:text-white dark:focus-visible:outline-red-500',
         'dark' => 'bg-neutral-50 border-neutral-50 text-neutral-900 focus-visible:outline-neutral-50 dark:bg-neutral-900 dark:border-neutral-900 dark:text-white dark:focus-visible:outline-neutral-900',
         'info' => 'bg-sky-500 border-sky-500 text-white focus-visible:outline-sky-500 dark:bg-sky-500 dark:border-sky-500 dark:text-white dark:focus-visible:outline-sky-500',
         'light' => 'bg-neutral-950 border-neutral-950 text-neutral-300 focus-visible:outline-neutral-950 dark:bg-white dark:border-white dark:text-neutral-600 dark:focus-visible:outline-white',
         'secondary' => 'bg-neutral-800 border-neutral-800 text-white focus-visible:outline-neutral-800 dark:bg-neutral-300 dark:border-neutral-300 dark:text-black dark:focus-visible:outline-neutral-300',
-        'primary' => 'bg-primary-500 border-primary-500 text-white focus-visible:outline-primary-500 dark:bg-primary-500 dark:border-primary-500 dark:text-white dark:focus-visible:outline-primary-500',
+        'primary' => 'bg-primary-500 dark:bg-primary-500 border-primary-500 dark:border-primary-500 text-white focus-visible:outline-primary-500 dark:bg-primary-500 dark:border-primary-500 dark:focus-visible:outline-primary-500',
         'success' => 'bg-green-500 border-green-500 text-white focus-visible:outline-green-500 dark:bg-green-500 dark:border-green-500 dark:text-white dark:focus-visible:outline-green-500',
         'warning' => 'bg-amber-500 border-amber-500 text-white focus-visible:outline-amber-500 dark:bg-amber-500 dark:border-amber-500 dark:text-white dark:focus-visible:outline-amber-500',
     ];

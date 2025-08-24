@@ -25,15 +25,17 @@ Route::prefix('market-management')->name('market-management.')->group(function (
     Route::get('markets-list', Market\MarketsList::class)->name('markets-list');
     Route::get('add-new-market', Market\AddNewMarket::class)->name('add-new-market');
     Route::get('{market}/edit-market', Market\EditMarket::class)->name('edit-market');
-    
-    Route::get('add-new-customer-category', Market\CustomerCategories\AddNewCategory::class)->name('add-new-customer-category');
-    Route::get('customer-categories-list', Market\CustomerCategories\CategoriesList::class)->name('customer-categories-list');
-    Route::get('{category}/edit-customer-category', Market\CustomerCategories\EditCategory::class)->name('edit-customer-category');
+
+    Route::get('add-new-customer-category', Market\Categories\AddNewCategory::class)->name('add-new-customer-category');
+    Route::get('customer-categories-list', Market\Categories\CategoriesList::class)->name('customer-categories-list');
+    Route::get('{category}/edit-customer-category', Market\Categories\EditCategory::class)->name('edit-customer-category');
 
     Route::get('add-new-customer', Market\Customer\AddNewCustomer::class)->name('add-new-customer');
     Route::get('customers-list', Market\Customer\CustomersList::class)->name('customers-list');
-    Route::get('{customer}/edit-customer', Market\Customer\EditCustomer::class)->name('edit-customer');
     Route::get('{customer}/customer-profile', Market\Customer\CustomerProfile::class)->name('customer-profile');
+    Route::get('{customer}/update-customer-profile-image', Market\Customer\UpdateProfileImage::class)->name('update-customer-profile-image');
+    Route::get('{customer}/block-customer-account', Market\Customer\BlockAccount::class)->name('block-customer-account');
+    Route::get('{customer}/reactivate-customer-account', Market\Customer\ReactiveAccount::class)->name('reactivate-customer-account');
 
     Route::get('market-visit', Market\MarketVisit::class)->name('market-visit');
 });

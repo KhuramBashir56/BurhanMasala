@@ -29,7 +29,7 @@ class AddNewCustomer extends Component
 
     public $markets = [];
 
-    public $customer_category = '';
+    public $category = '';
 
     public $categories = [];
 
@@ -69,7 +69,7 @@ class AddNewCustomer extends Component
         $this->validate([
             'name' => ['required', 'string', 'max:48'],
             'nic' => ['nullable', 'string', 'max:15', 'regex:/^[0-9]{5}-[0-9]{7}-[0-9]{1}$/', 'unique:users,nic'],
-            'customer_category' => ['required', 'integer', 'exists:customer_categories,id'],
+            'category' => ['required', 'integer', 'exists:customer_categories,id'],
             'market' => ['required', 'integer', 'exists:markets,id'],
             'title' => ['nullable', 'string', 'max:48'],
             'phone' => ['required', 'string', 'max:11', 'regex:/^03[0-9]{9}$/', 'unique:users,phone'],
@@ -97,7 +97,7 @@ class AddNewCustomer extends Component
                 ]);
                 $customer = Customer::create([
                     'user_id' => $user->id,
-                    'customer_category_id' => $this->customer_category,
+                    'category_id' => $this->category,
                     'market_id' => $this->market,
                     'title' => $this->title,
                     'near_by' => $this->near_by,
@@ -107,7 +107,7 @@ class AddNewCustomer extends Component
                 ]);
                 $this->activity('App\Models\Customer', $customer->id, 'create', 'Added new customer: ' . $user->name);
             });
-            $this->reset(['name', 'nic', 'market', 'customer_category', 'title', 'phone', 'whatsapp', 'near_by', 'street', 'address', 'email', 'password', 'password_confirmation', 'confirm_password', 'avatar', 'location_view']);
+            $this->reset(['name', 'nic', 'market', 'category', 'title', 'phone', 'whatsapp', 'near_by', 'street', 'address', 'email', 'password', 'password_confirmation', 'confirm_password', 'avatar', 'location_view']);
             $this->alert('success', 'Customer added successfully.');
         } catch (\Throwable $th) {
             $this->alert('error', 'Something went wrong. Please try again. ' . $th->getMessage());

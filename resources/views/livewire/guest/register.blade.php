@@ -3,7 +3,7 @@
 <x-control-panel.card class="w-full max-w-md">
     <x-control-panel.card.header :title="__('Register an account')" :description="__('Please fill in the form below to create an account')" class="p-4 text-center" />
     <form wire:submit.prevent="register" class="bg-contain bg-no-repeat bg-center" style="background-image: url('{{ asset('images/logo-512x512.png') }}');">
-        <x-control-panel.card.body class="p-4 gap-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-none">
+        <x-control-panel.card.body class="p-4 gap-4 bg-white/75 dark:bg-gray-900/90 backdrop-blur-none">
             <x-control-panel.form.label :for="__('name')" :label="__('Name')">
                 <x-control-panel.form.input :label="__('Name')" :for="__('name')" wire:model="name" placeholder="Your Full Name" autocomplete="name" maxlength="48" required />
             </x-control-panel.form.label>
@@ -19,7 +19,7 @@
             <x-control-panel.form.label :for="__('password_confirmation')" :label="__('Confirm Password')">
                 <x-control-panel.form.input-password :label="__('Confirm Password')" :for="__('password_confirmation')" placeholder="Confirm Your Password" wire:model="password_confirmation" autocomplete="new-password" required minlength="8" maxlength="64" />
             </x-control-panel.form.label>
-            <x-control-panel.form.checkbox :for="__('terms')" wire:model="terms">
+            <x-control-panel.form.checkbox :for="__('terms')" wire:model="terms" class="self-start mt-1">
                 <span class="text-sm">
                     I agree to the <x-link :title="__('Terms and Conditions')" wire:navigate href="{{ route('terms-and-conditions') }}" /> and <x-link :title="__('Privacy Policy')" wire:navigate href="{{ route('privacy-policy') }}" />
                 </span>

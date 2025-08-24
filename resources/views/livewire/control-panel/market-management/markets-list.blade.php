@@ -21,7 +21,7 @@
                         <p class="capitalize whitespace-nowrap">{{ $market->city->name . ' district ' . $market->district->name . ', ' . $market->province->name }}</p>
                         <p>{{ $market->description }}</p>
                     </x-control-panel.table.td>
-                    <x-control-panel.table.td content="{{ 55 }}" class="text-center" />
+                    <x-control-panel.table.td content="{{ $market->customers->count() }}" class="text-center" />
                     @canany(['edit-market-information', 'change-market-status'])
                         <x-control-panel.table.actions>
                             @can('change-market-status')

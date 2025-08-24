@@ -27,11 +27,11 @@ return new class extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name',48);
+            $table->string('name', 48);
             $table->string('nic', 15)->nullable();
-            $table->string('phone',11)->unique();
+            $table->string('phone', 11)->unique();
             $table->string('whatsapp', 11)->nullable();
-            $table->string('email',64)->unique()->nullable();
+            $table->string('email', 64)->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('avatar', 255)->nullable();
             $table->enum('status', ['active', 'inactive', 'deleted', 'banned'])->default('active');
@@ -47,7 +47,7 @@ return new class extends Migration
             $table->foreignId('province_id')->constrained('provinces')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('district_id')->constrained('districts')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->text('description',1500)->nullable();
+            $table->text('description', 1500)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
         });
 
@@ -59,7 +59,7 @@ return new class extends Migration
         Schema::create('customer_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 48);
-            $table->string('description',255)->nullable();
+            $table->string('description', 255)->nullable();
         });
 
         Schema::create('customers', function (Blueprint $table) {
@@ -67,12 +67,21 @@ return new class extends Migration
             $table->string('title', 48)->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('market_id')->nullable()->constrained('markets')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('customer_category_id')->nullable()->constrained('customer_categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->nullable()->constrained('customer_categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('near_by', 255);
             $table->string('street', 255);
             $table->string('address', 255);
             $table->string('location_view', 255)->nullable();
             $table->timestamps();
+        });
+
+        Schema::create('market_visits', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('customer_id')->constrained('customers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('host_name', 48)->nullable();
+            $table->text('remarks');
+            $table->foreignId('visiter_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->timestamp('created_at', 6);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -101,6 +110,15 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamp('created_at', 6);
         });
+
+        Schema::create('user_account_status', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('type', ['active', 'block', 'delete']);
+            $table->text('description');
+            $table->foreignId('action_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->timestamp('created_at', 6);
+        });
     }
 
     public function down(): void
@@ -112,9 +130,11 @@ return new class extends Migration
         Schema::dropIfExists('markets');
         Schema::dropIfExists('user_has_markets');
         Schema::dropIfExists('customer_categories');
-        Schema::dropIfExists('user_contacts');
+        Schema::dropIfExists('customers');
+        Schema::dropIfExists('market_visits');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('activities');
+        Schema::dropIfExists('user_account_status');
     }
 };

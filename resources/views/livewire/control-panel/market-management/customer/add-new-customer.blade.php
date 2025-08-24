@@ -23,10 +23,10 @@
                         @endforeach
                     </x-control-panel.form.select>
                 </x-control-panel.form.label>
-                <x-control-panel.form.label label="Customer Category Name" for="customer_category">
-                    <x-control-panel.form.select wire:model="customer_category" title="Select Customer Category" for="customer_category" required>
+                <x-control-panel.form.label label="Customer Category Name" for="category">
+                    <x-control-panel.form.select wire:model="category" title="Select Customer Category" for="category" required>
                         @foreach ($categories as $category)
-                            <x-control-panel.form.option wire:key="category-{{ $category->id }}" content="{{ $category->name }}" value="{{ $category->id }}" />
+                            <x-control-panel.form.option wire:key="customer-category-{{ $category->id }}" content="{{ $category->name }}" value="{{ $category->id }}" />
                         @endforeach
                     </x-control-panel.form.select>
                 </x-control-panel.form.label>

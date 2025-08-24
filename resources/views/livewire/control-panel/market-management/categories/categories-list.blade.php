@@ -17,7 +17,7 @@
                         <p class="text-lg font-semibold capitalize whitespace-nowrap">{{ $customer->name }}</p>
                         <p>{{ $customer->description }}</p>
                     </x-control-panel.table.td>
-                    <x-control-panel.table.td content="55" class="text-center" />
+                    <x-control-panel.table.td content="{{ $customer->customers->count() }}" class="text-center" />
                     @canany(['edit-customer-category'])
                         <x-control-panel.table.actions>
                             @can('edit-customer-category')

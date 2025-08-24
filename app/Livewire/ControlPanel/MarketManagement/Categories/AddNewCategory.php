@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\ControlPanel\MarketManagement\CustomerCategories;
+namespace App\Livewire\ControlPanel\MarketManagement\Categories;
 
 use App\Models\CustomerCategory;
 use App\Traits\AlertMessage;
@@ -44,6 +44,6 @@ class AddNewCategory extends Component
     public function render()
     {
         $this->authorize('add-new-customer-category');
-        return view('livewire.control-panel.market-management.customer-categories.add-new-category');
+        return view('livewire.control-panel.market-management.categories.add-new-category');
     }
 }

@@ -10,7 +10,7 @@
         'info' => 'accent-blue-500',
     ];
 
-    $classes = 'size-5 cursor-pointer rounded form-checkbox ' . ($errors->has($for) ? 'border-red-600 focus:ring-red-500' : $colors[$color]);
+    $classes = 'size-5 cursor-pointer rounded ' . ($errors->has($for) ? 'border-red-600 focus:ring-red-500' : $colors[$color]);
 @endphp
 
 <label for="{{ $for }}" class="flex items-center gap-1 w-fit relative">

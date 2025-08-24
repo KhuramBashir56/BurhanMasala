@@ -44,6 +44,7 @@ class MarketsList extends Component
     {
         return view('livewire.control-panel.market-management.markets-list', [
             'markets' => Market::with([
+                'customers:id,market_id',
                 'province:id,name',
                 'district:id,name',
                 'city:id,name'

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\ControlPanel\MarketManagement\CustomerCategories;
+namespace App\Livewire\ControlPanel\MarketManagement\Categories;
 
 use App\Models\CustomerCategory;
 use Livewire\Attributes\Layout;
@@ -14,8 +14,10 @@ class CategoriesList extends Component
     public function render()
     {
         $this->authorize('view-customer-categories-list');
-        return view('livewire.control-panel.market-management.customer-categories.categories-list', [
-            'categories' => CustomerCategory::select('id', 'name', 'description')->orderBy('name')->get()
+        return view('livewire.control-panel.market-management.categories.categories-list', [
+            'categories' => CustomerCategory::with([
+                'customers:id,category_id'
+            ])->select('id', 'name', 'description')->orderBy('name')->get()
         ]);
     }
 }

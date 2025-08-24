@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\ControlPanel\MarketManagement\CustomerCategories;
+namespace App\Livewire\ControlPanel\MarketManagement\Categories;
 
 use App\Models\CustomerCategory;
 use App\Traits\AlertMessage;
@@ -54,6 +54,6 @@ class EditCategory extends Component
     public function render()
     {
         $this->authorize('edit-customer-category');
-        return view('livewire.control-panel.market-management.customer-categories.edit-category');
+        return view('livewire.control-panel.market-management.categories.edit-category');
     }
 }

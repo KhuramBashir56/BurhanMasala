@@ -1,7 +1,7 @@
 @props(['title', 'color' => 'primary', 'target' => null])
 
 @php
-    $baseClasses = 'whitespace-nowrap flex justify-center items-center rounded-md px-4 py-2 font-medium tracking-wide transition text-center border focus-visible:outline-2 focus-visible:outline-offset-2 active:outline-offset-0 opacity-90 hover:opacity-100 active:opacity-80 disabled:opacity-60 rounded-md cursor-pointer capitalize';
+    $baseClasses = 'whitespace-nowrap flex justify-center items-center rounded-md px-4 py-2 font-medium tracking-wide transition text-center border focus-visible:outline-2 focus-visible:outline-offset-2 active:outline-offset-0 opacity-90 hover:opacity-100 active:opacity-80 disabled:opacity-60 rounded-md capitalize';
     $colorClasses = [
         'danger' => 'bg-red-500 border-red-500 text-white focus-visible:outline-red-500 dark:bg-red-500 dark:border-red-500 dark:text-white dark:focus-visible:outline-red-500',
         'dark' => 'bg-neutral-50 border-neutral-50 text-neutral-900 focus-visible:outline-neutral-50 dark:bg-neutral-900 dark:border-neutral-900 dark:text-white dark:focus-visible:outline-neutral-900',
