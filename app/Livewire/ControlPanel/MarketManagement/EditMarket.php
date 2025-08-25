@@ -21,21 +21,21 @@ class EditMarket extends Component
     #[Locked]
     public $market;
 
-    public $provinces = [];
+    public array $provinces = [];
 
-    public $districts = [];
+    public array $districts = [];
 
-    public $cities = [];
+    public array $cities = [];
 
-    public $name = '';
+    public string $name = '';
 
-    public $province = '';
+    public string $province = '';
 
-    public $district = '';
+    public string $district = '';
 
-    public $city = '';
+    public string $city = '';
 
-    public $description = '';
+    public string $description = '';
 
     public function mount(Market $market): void
     {

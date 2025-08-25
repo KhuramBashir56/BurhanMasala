@@ -11,7 +11,7 @@ use Livewire\Component;
 #[Layout('components.layouts.control-panel')]
 class CitiesList extends Component
 {
-    public $searchQuery = '';
+    public string $searchQuery = '';
 
     public function search(): void
     {

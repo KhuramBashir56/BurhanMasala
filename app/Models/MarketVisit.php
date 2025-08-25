@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MarketVisit extends Model
 {
@@ -14,7 +15,12 @@ class MarketVisit extends Model
 
     protected $dateFormat = 'Y-m-d H:i:s.u';
 
-    protected $fillable = ['shop_id', 'host_name', 'remarks', 'visiter_id'];
+    protected $fillable = ['customer_id', 'host_name', 'remarks', 'visiter_id'];
 
     protected $guarded = ['id'];
+
+    public function visiter(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'visiter_id', 'id');
+    }
 }

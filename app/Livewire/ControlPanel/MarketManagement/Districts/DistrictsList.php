@@ -11,7 +11,7 @@ use Livewire\Component;
 #[Layout('components.layouts.control-panel')]
 class DistrictsList extends Component
 {
-    public $searchQuery = '';
+    public string $searchQuery = '';
 
     public function search(): void
     {
@@ -20,6 +20,7 @@ class DistrictsList extends Component
 
     public function render()
     {
+        $this->authorize('view-districts-list');
         return view('livewire.control-panel.market-management.districts.districts-list', [
             'districts' => District::with('province:id,name')->when(function ($searchQuery) {
                 $searchQuery->where('name', 'LIKE', '%' . $this->searchQuery . '%')->orWhereHas('province', function ($province) {

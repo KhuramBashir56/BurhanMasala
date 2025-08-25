@@ -36,6 +36,7 @@ Route::prefix('market-management')->name('market-management.')->group(function (
     Route::get('{customer}/update-customer-profile-image', Market\Customer\UpdateProfileImage::class)->name('update-customer-profile-image');
     Route::get('{customer}/block-customer-account', Market\Customer\BlockAccount::class)->name('block-customer-account');
     Route::get('{customer}/reactivate-customer-account', Market\Customer\ReactiveAccount::class)->name('reactivate-customer-account');
+    Route::get('{customer}/visit-history', Market\Customer\VisitsHistory::class)->name('visit-history');
 
     Route::get('market-visit', Market\MarketVisit::class)->name('market-visit');
 });

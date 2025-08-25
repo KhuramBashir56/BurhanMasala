@@ -21,41 +21,41 @@ class AddNewCustomer extends Component
 {
     use WithFileUploads, AlertMessage, UserActivity;
 
-    public $name = '';
+    public string $name = '';
 
-    public $nic = '';
+    public string $nic = '';
 
-    public $market = '';
+    public string $market = '';
 
-    public $markets = [];
+    public array $markets = [];
 
-    public $category = '';
+    public string $category = '';
 
-    public $categories = [];
+    public array $categories = [];
 
-    public $title = '';
+    public string $title = '';
 
-    public $phone = '';
+    public string $phone = '';
 
-    public $whatsapp = '';
+    public string $whatsapp = '';
 
-    public $near_by = '';
+    public string $near_by = '';
 
-    public $street = '';
+    public string $street = '';
 
-    public $address = '';
+    public string $address = '';
 
-    public $email = '';
+    public string $email = '';
 
-    public $password = '';
+    public string $password = '';
 
-    public $password_confirmation = '';
+    public string $password_confirmation = '';
 
-    public $confirm_password = '';
+    public string $confirm_password = '';
 
-    public $avatar = '';
+    public string $avatar = '';
 
-    public $location_view = '';
+    public string $location_view = '';
 
     public function mount(): void
     {
@@ -84,7 +84,6 @@ class AddNewCustomer extends Component
             'location_view' => ['nullable', 'image', 'max:512'],
         ]);
         try {
-            $this->authorize('add-new-customer');
             DB::transaction(function () {
                 $user = User::create([
                     'name' => $this->name,
@@ -116,6 +115,7 @@ class AddNewCustomer extends Component
 
     public function render()
     {
+        $this->authorize('add-new-customer');
         return view('livewire.control-panel.market-management.customer.add-new-customer');
     }
 }

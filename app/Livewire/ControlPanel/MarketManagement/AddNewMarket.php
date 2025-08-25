@@ -23,15 +23,15 @@ class AddNewMarket extends Component
 
     public $cities = [];
 
-    public $name = '';
+    public string $name = '';
 
-    public $province = '';
+    public string $province = '';
 
-    public $district = '';
+    public string $district = '';
 
-    public $city = '';
+    public string $city = '';
 
-    public $description = '';
+    public string $description = '';
 
     public function mount(): void
     {

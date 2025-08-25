@@ -4,20 +4,20 @@
             <path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
         </svg>
     </x-control-panel.menubar.item>
-    @canany(['add-district', 'view-districts-list', 'add-city', 'view-cities-list', 'add-new-market', 'view-markets-list', 'market-visit', 'view-customer-categories-list', 'add-new-customer-category'])
+    @canany(['add-new-district', 'view-districts-list', 'add-new-city', 'view-cities-list', 'add-new-market', 'view-markets-list', 'market-visit', 'view-customer-categories-list', 'add-new-customer-category'])
         <x-control-panel.menubar.dropdown title="Market Management" name="market-management" status="control-panel.market-management.*">
             <x-slot:icon>
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 -960 960 960" fill="currentColor">
                     <path xmlns="http://www.w3.org/2000/svg" d="M160-720v-80h640v80H160Zm0 560v-240h-40v-80l40-200h640l40 200v80h-40v240h-80v-240H560v240H160Zm80-80h240v-160H240v160Zm-38-240h556-556Zm0 0h556l-24-120H226l-24 120Z" />
                 </svg>
             </x-slot>
-            @can('add-district')
+            @can('add-new-district')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.add-new-district') }}" title="Add New District" status="control-panel.market-management.add-new-district" />
             @endcan
             @can('view-districts-list')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.districts-list') }}" title="View District List" status="control-panel.market-management.districts-list" />
             @endcan
-            @can('add-city')
+            @can('add-new-city')
                 <x-control-panel.menubar.dropdown-item href="{{ route('control-panel.market-management.add-new-city') }}" title="Add New City" status="control-panel.market-management.add-new-city" />
             @endcan
             @can('view-cities-list')

@@ -18,11 +18,11 @@ class CustomersList extends Component
 {
     use WithPagination;
 
-    public $searchQuery = '';
+    public string $searchQuery = '';
 
-    public $market = '';
+    public string $market = '';
 
-    public $category = '';
+    public string $category = '';
 
     public function search(): void
     {
@@ -36,6 +36,7 @@ class CustomersList extends Component
 
     public function render()
     {
+        $this->authorize('view-customers-list');
         return view('livewire.control-panel.market-management.customer.customers-list', [
             'customers' => Customer::when(!Auth::user()->hasRole(Role::find(1)->name), function ($query) {
                 $query->whereIn('market_id', Auth::user()->markets()->pluck('market_id')->toArray());
@@ -47,6 +48,7 @@ class CustomersList extends Component
                 'market.province:id,name',
                 'market.district:id,name',
                 'market.city:id,name',
+                'visits:id,customer_id',
                 'user:id,name,phone,status'
             ])->when($this->searchQuery, function ($searchQuery) {
                 $searchQuery->where(function ($shopQuery) {

@@ -6,6 +6,7 @@ use App\Traits\AlertMessage;
 use App\Traits\UserActivity;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
@@ -16,9 +17,10 @@ class EditRole extends Component
 {
     use AlertMessage, UserActivity;
 
+    #[Locked]
     public $role = null;
 
-    public $name = '';
+    public string $name = '';
 
     public function mount(Role $role): void
     {

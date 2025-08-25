@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Customer extends Model
 {
@@ -24,5 +27,15 @@ class Customer extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(CustomerCategory::class, 'category_id', 'id');
+    }
+
+    public function visit(): HasOne
+    {
+        return $this->hasOne(MarketVisit::class, 'customer_id', 'id')->whereDate('created_at', Carbon::today())->latestOfMany();
+    }
+
+    public function visits(): HasMany
+    {
+        return $this->hasMany(MarketVisit::class, 'customer_id', 'id');
     }
 }

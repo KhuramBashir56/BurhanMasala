@@ -22,15 +22,15 @@ class EditCity extends Component
     #[Locked]
     public $city;
 
-    public $provinces = [];
+    public array $provinces = [];
 
-    public $province = '';
+    public string $province = '';
 
-    public $districts = [];
+    public array $districts = [];
 
-    public $district = '';
+    public string $district = '';
 
-    public $name = '';
+    public string $name = '';
 
     public function mount(City $city): void
     {
@@ -72,6 +72,7 @@ class EditCity extends Component
 
     public function render()
     {
+        $this->authorize('edit-city');
         return view('livewire.control-panel.market-management.cities.edit-city');
     }
 }

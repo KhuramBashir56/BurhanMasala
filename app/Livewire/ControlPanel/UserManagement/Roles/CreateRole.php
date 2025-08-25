@@ -16,7 +16,7 @@ class CreateRole extends Component
 {
     use AlertMessage, UserActivity;
 
-    public $name = '';
+    public string $name = '';
 
     public function addNewRole(): void
     {

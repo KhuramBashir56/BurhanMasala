@@ -20,7 +20,7 @@
                 @can('view-districts-list')
                     <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.user-management.roles-list') }}" color="secondary" title="Cancel" />
                 @endcan
-                @can('add-district')
+                @can('add-new-district')
                     <x-control-panel.buttons.button type="submit" color="success" target="addNewDistrict" title="Save" />
                 @endcan
             </x-control-panel.card.footer>

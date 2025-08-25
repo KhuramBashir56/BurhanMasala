@@ -17,7 +17,7 @@ class Settings extends Component
 {
     use AlertMessage, UserActivity;
 
-    public $sessions = [];
+    public array $sessions = [];
 
     public function mount(): void
     {
@@ -36,11 +36,11 @@ class Settings extends Component
         });
     }
 
-    public $current_password = '';
+    public string $current_password = '';
 
-    public $password = '';
+    public string $password = '';
 
-    public $password_confirmation = '';
+    public string $password_confirmation = '';
 
     public function updatePassword(): void
     {
@@ -76,7 +76,7 @@ class Settings extends Component
                 'message' => 'Logged out successfully from this session.',
             ]);
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 
@@ -94,7 +94,7 @@ class Settings extends Component
                 'message' => 'Logged out successfully from all devices.',
             ]);
         } catch (\Throwable $th) {
-            return $this->alert('error', 'Something went wrong. Please try again.');
+            $this->alert('error', 'Something went wrong. Please try again.');
         }
     }
 

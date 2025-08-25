@@ -18,15 +18,15 @@ class AddNewCity extends Component
 {
     use AlertMessage, UserActivity;
 
-    public $provinces = [];
+    public array $provinces = [];
 
-    public $province = '';
+    public string $province = '';
 
-    public $districts = [];
+    public array $districts = [];
 
-    public $district = '';
+    public string $district = '';
 
-    public $name = '';
+    public string $name = '';
 
     public function mount(): void
     {
@@ -40,7 +40,7 @@ class AddNewCity extends Component
 
     public function addNewCity(): void
     {
-        $this->authorize('add-city');
+        $this->authorize('add-new-city');
         $this->validate([
             'province' => ['required', 'integer', 'exists:provinces,id'],
             'district' => ['required', 'integer', 'exists:districts,id'],
@@ -63,7 +63,7 @@ class AddNewCity extends Component
 
     public function render()
     {
-        $this->authorize('add-city');
+        $this->authorize('add-new-city');
         return view('livewire.control-panel.market-management.cities.add-new-city');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Livewire\ControlPanel\MarketManagement\Customer;
 
 use App\Models\Customer;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -11,6 +12,7 @@ use Livewire\Component;
 #[Layout('components.layouts.control-panel')]
 class BlockAccount extends Component
 {
+    #[Locked]
     public $customer;
 
     public function mount(Customer $customer)

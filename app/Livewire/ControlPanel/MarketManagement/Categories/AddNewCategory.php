@@ -16,9 +16,9 @@ class AddNewCategory extends Component
 {
     use AlertMessage, UserActivity;
 
-    public $name = '';
+    public string $name = '';
 
-    public $description = '';
+    public string $description = '';
 
     public function addNewCustomerCategory(): void
     {

@@ -7,6 +7,7 @@ use App\Traits\AlertMessage;
 use App\Traits\UserActivity;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -16,11 +17,12 @@ class EditCategory extends Component
 {
     use AlertMessage, UserActivity;
 
+    #[Locked]
     public $category;
 
-    public $name = '';
+    public string $name = '';
 
-    public $description = '';
+    public string $description = '';
 
     public function mount(CustomerCategory $category): void
     {

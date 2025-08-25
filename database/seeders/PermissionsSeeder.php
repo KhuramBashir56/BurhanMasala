@@ -13,7 +13,7 @@ class PermissionsSeeder extends Seeder
         $permissions = [
             [
                 'model' => 'Market Management / District',
-                'name' => 'add-district'
+                'name' => 'add-new-district'
             ],
             [
                 'model' => 'Market Management / District',
@@ -25,7 +25,7 @@ class PermissionsSeeder extends Seeder
             ],
             [
                 'model' => 'Market Management / City',
-                'name' => 'add-city'
+                'name' => 'add-new-city'
             ],
             [
                 'model' => 'Market Management / City',
@@ -51,20 +51,18 @@ class PermissionsSeeder extends Seeder
                 'model' => 'Market Management / Markets',
                 'name' => 'change-market-status',
             ],
-            //
             [
                 'model' => 'Market Management / Markets',
                 'name' => 'market-visit',
             ],
             [
                 'model' => 'Market Management / Markets',
-                'name' => 'add-visit-review',
+                'name' => 'add-visit-remakes',
             ],
             [
                 'model' => 'Market Management / Markets',
                 'name' => 'visit-history',
             ],
-            //
             [
                 'model' => 'Market Management / Customer Category',
                 'name' => 'view-customer-categories-list',
@@ -101,7 +99,6 @@ class PermissionsSeeder extends Seeder
                 'model' => 'Market Management / Customer / Profile',
                 'name' => 'reactivate-customer-account'
             ],
-            // Roles Permissions
             [
                 'model' => 'User Management / Role',
                 'name' => 'view-roles-list'
@@ -137,6 +134,10 @@ class PermissionsSeeder extends Seeder
             [
                 'model' => 'User Management / User',
                 'name' => 'reactivate-account'
+            ],
+            [
+                'model' => 'User Management / User',
+                'name' => 'update-profile-image'
             ],
         ];
 

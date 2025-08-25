@@ -18,14 +18,14 @@ class EditDistrict extends Component
 {
     use AlertMessage, UserActivity;
 
-    public $provinces = [];
+    public array $provinces = [];
 
     #[Locked]
     public $district;
 
-    public $province = '';
+    public string $province = '';
 
-    public $name = '';
+    public string $name = '';
 
     public function mount(District $district): void
     {

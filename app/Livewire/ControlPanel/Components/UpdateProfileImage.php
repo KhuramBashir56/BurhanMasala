@@ -7,6 +7,7 @@ use App\Traits\AlertMessage;
 use App\Traits\UserActivity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,17 +15,19 @@ class UpdateProfileImage extends Component
 {
     use WithFileUploads, AlertMessage, UserActivity;
 
+    #[Locked]
     public $user = null;
 
-    public $avatar = '';
+    public string $avatar = '';
 
-    public function mount(User $user)
+    public function mount(User $user): void
     {
         $this->user = $user;
     }
 
     public function updateProfileImage(): void
     {
+        $this->authorize('update-profile-image');
         $this->validate([
             'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:512'],
         ]);
@@ -46,6 +49,7 @@ class UpdateProfileImage extends Component
 
     public function render()
     {
+        $this->authorize('update-profile-image');
         return view('livewire.control-panel.components.update-profile-image');
     }
 }

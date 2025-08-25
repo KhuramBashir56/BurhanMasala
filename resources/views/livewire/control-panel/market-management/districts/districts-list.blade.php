@@ -1,6 +1,6 @@
 <div class="w-full space-y-4" x-data="">
     <x-control-panel.page-header>
-        @can('add-district')
+        @can('add-new-district')
             <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.add-new-district') }}" title="Add New District" class="w-fit" />
         @endcan
         <x-control-panel.search placeholder="Search District..." class="sm:max-w-sm" />

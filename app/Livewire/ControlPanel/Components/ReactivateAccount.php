@@ -8,15 +8,17 @@ use App\Traits\AlertMessage;
 use App\Traits\UserActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 class ReactivateAccount extends Component
 {
     use AlertMessage, UserActivity;
 
+    #[Locked]
     public $user = null;
 
-    public $description;
+    public string $description;
 
     public function mount(User $user)
     {
@@ -28,7 +30,7 @@ class ReactivateAccount extends Component
 
     public function reactivateAccount(): void
     {
-        $this->authorize('block-account');
+        $this->authorize('reactivate-account');
         if (User::findOrFail($this->user->id)->status === 'active') {
             $this->alert('error', 'Account is already active, Please go back and check user profile.');
         } else {
@@ -57,6 +59,7 @@ class ReactivateAccount extends Component
 
     public function render()
     {
+        $this->authorize('reactivate-account');
         return view('livewire.control-panel.components.reactivate-account');
     }
 }

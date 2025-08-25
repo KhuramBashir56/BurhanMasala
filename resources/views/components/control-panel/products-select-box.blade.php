@@ -1,9 +1,9 @@
 @props(['products' => []])
 
 <div {{ $attributes->merge(['class' => 'w-full relative']) }} x-data="{ dropdown: false }">
-    <x-ui.form.label title="Product Name" for="product_id" x-on:click="dropdown = !dropdown" x-on:click.away="dropdown = false">
-        <x-ui.form.input type="search" wire:model.live.debounce.500ms="product" for="product_id" required autocomplete="off" placeholder="Product Name" />
-    </x-ui.form.label>
+    <x-control-panel.form.label label="Product Name" for="product_id" x-on:click="dropdown = !dropdown" x-on:click.away="dropdown = false">
+        <x-control-panel.form.input type="search" wire:model.live.debounce.500ms="product" for="product_id" reqcontrol-panelred autocomplete="off" placeholder="Product Name" />
+    </x-control-panel.form.label>
     <div class="absolute inset-0 z-10 top-full h-80 max-h-sm overflow-y-scroll" x-show="dropdown">
         <ul class="bg-white shadow-lg dark:bg-gray-800 divide-y">
             @forelse ($products as $product)

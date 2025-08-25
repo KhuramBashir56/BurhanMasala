@@ -1,6 +1,6 @@
 <div class="w-full space-y-4" x-data="">
     <x-control-panel.page-header>
-        @can('add-city')
+        @can('add-new-city')
             <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.add-new-city') }}" title="Add New City" class="w-fit" />
         @endcan
         <x-control-panel.search placeholder="Search City..." class="sm:max-w-sm" />

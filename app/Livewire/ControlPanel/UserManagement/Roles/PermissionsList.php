@@ -20,7 +20,7 @@ class PermissionsList extends Component
     #[Locked]
     public $role = null;
 
-    public $searchQuery = '';
+    public string $searchQuery = '';
 
     public function mount(Role $role)
     {

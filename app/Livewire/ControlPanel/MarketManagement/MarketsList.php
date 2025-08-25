@@ -12,11 +12,13 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
+#[Title('Markets List')]
+#[Layout('components.layouts.control-panel')]
 class MarketsList extends Component
 {
     use AlertMessage, UserActivity;
 
-    public $searchQuery = '';
+    public string $searchQuery = '';
 
     public function search(): void
     {
@@ -38,10 +40,9 @@ class MarketsList extends Component
         }
     }
 
-    #[Title('Markets List')]
-    #[Layout('components.layouts.control-panel')]
     public function render()
     {
+        $this->authorize('view-markets-list');
         return view('livewire.control-panel.market-management.markets-list', [
             'markets' => Market::with([
                 'customers:id,market_id',

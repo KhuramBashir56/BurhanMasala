@@ -27,7 +27,7 @@
                 @can('view-cities-list')
                     <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.cities-list') }}" color="secondary" title="Cancel" />
                 @endcan
-                @can('add-city')
+                @can('add-new-city')
                     <x-control-panel.buttons.button type="submit" color="success" target="addNewCity" title="Save" />
                 @endcan
             </x-control-panel.card.footer>

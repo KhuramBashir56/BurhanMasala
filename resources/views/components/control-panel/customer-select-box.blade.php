@@ -1,9 +1,9 @@
 @props(['shops' => []])
 
 <div class="w-full relative sm:col-span-2" x-data="{ dropdown: false }">
-    <x-ui.form.label title="Sales Man Name" for="shop_id" x-on:click="dropdown = !dropdown" x-on:click.away="dropdown = false">
-        <x-ui.form.input type="search" wire:model.live.debounce.500ms="shop" for="shop_id" required autocomplete="off" placeholder="Product Name" />
-    </x-ui.form.label>
+    <x-control-panel.form.label label="Sales Man Name" for="shop_id" x-on:click="dropdown = !dropdown" x-on:click.away="dropdown = false">
+        <x-control-panel.form.input type="search" wire:model.live.debounce.500ms="shop" for="shop_id" reqcontrol-panelred autocomplete="off" placeholder="Product Name" />
+    </x-control-panel.form.label>
     <div class="absolute inset-0 z-10 top-full h-screen max-h-4xs overflow-y-auto" x-show="dropdown">
         <ul class="bg-white shadow-lg dark:bg-gray-800 divide-y">
             @forelse ($shops as $shop)

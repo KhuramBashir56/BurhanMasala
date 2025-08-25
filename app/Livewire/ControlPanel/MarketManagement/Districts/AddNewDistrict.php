@@ -17,11 +17,11 @@ class AddNewDistrict extends Component
 {
     use AlertMessage, UserActivity;
 
-    public $provinces = [];
+    public array $provinces = [];
 
-    public $province = '';
+    public string $province = '';
 
-    public $name = '';
+    public string $name = '';
 
     public function mount(): void
     {
@@ -30,7 +30,7 @@ class AddNewDistrict extends Component
 
     public function addNewDistrict(): void
     {
-        $this->authorize('add-district');
+        $this->authorize('add-new-district');
         $this->validate([
             'province' => ['required', 'integer', 'exists:provinces,id'],
             'name' => ['required', 'string', 'max:48', 'unique:districts,name'],
@@ -52,7 +52,7 @@ class AddNewDistrict extends Component
 
     public function render()
     {
-        $this->authorize('add-district');
+        $this->authorize('add-new-district');
         return view('livewire.control-panel.market-management.districts.add-new-district');
     }
 }

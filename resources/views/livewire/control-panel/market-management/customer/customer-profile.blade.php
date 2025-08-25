@@ -56,12 +56,12 @@
                 <x-control-panel.card.header title="Financial Actions" description="These actions are not reversible please make all the actions carefully." class="px-4 pt-4" />
                 <x-control-panel.card.body class="p-4 gap-4">
                     <div class="flex flex-wrap gap-4">
-                        {{-- @if (count($customer->visits) > 0)
-                            @can('visit-history')
-                                <x-control-panel.buttons.link wire:navigate href="{{ route('panel.market-management.markets.visit-history', ['shop' => $customer->id]) }}" title="Visits History" class="grow" />
+                        @if (count($customer->visits) > 0)
+                            @can('customer-visit-history')
+                                <x-control-panel.buttons.link wire:navigate href="{{ route('control-panel.market-management.visit-history', ['customer' => $customer->id]) }}" title="Visits History" class="grow" />
                             @endcan
                         @endif
-                        @if (empty($customer->visit))
+                        {{-- @if (empty($customer->visit))
                             @can('add-visit-review')
                                 <x-control-panel.buttons.link wire:navigate href="{{ route('panel.market-management.markets.add-visit-review', ['shop' => $customer->id]) }}" title="Add Visit Review" class="grow" color="success" />
                             @endcan
